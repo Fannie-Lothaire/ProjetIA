@@ -62,23 +62,36 @@ namespace ProjetIAv0
         }
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
-        {
-           
-            //test affichage d'un segment
-            Pen pen = new Pen(Color.Pink); // d’autres couleurs sont disponibles
-            e.Graphics.DrawLine(pen, new Point(10, 10), new Point(50, 50));
-            e.Graphics.DrawLine(pen, new Point(10, 10), new Point(50, 50));
+        { // affichage d'une grille
+            int ligneMax = 30;
+            int colonneMax = 30;
+            int tileHeight = 32; // code à adapter
+            int tileWidth = 32;
+            for (int ligne = 0; ligne != ligneMax; ligne++)
+            {
+                int lignePosition = ligne * tileHeight;
+                e.Graphics.DrawLine(new Pen(Color.Black), 0, lignePosition, colonneMax * tileWidth, lignePosition);
+            }
+            for (int colonne = 0; colonne != colonneMax; colonne++)
+            {
+                int colonnePosition = colonne * tileWidth;
+                e.Graphics.DrawLine(new Pen(Color.Black), colonnePosition, 0, colonnePosition, ligneMax * tileHeight);
+            }
 
+            //test affichage d'un segment du point de départ au point d’arrivée
+            Pen pen = new Pen(Color.Pink); // d’autres couleurs sont disponibles
+            e.Graphics.DrawLine(pen, new Point(100, 200), new Point(200, 100));
             //(x0,y0) = (100, 200) ; (xf,yf) = (200,100) et le vent est constant à 50km/h et souffle dans la direction 30° (vers le nord-est).
-            // affichage d'une icône de bateau au point de départ
-            Rectangle rect = new Rectangle(30, 30, 30,30);//sert à mettre une image png dedans
-            float width = 150.0F; //f pour les flottants
-            float height = 150.0F;
-            GraphicsUnit units = GraphicsUnit.Pixel;
+            // affichage d'une icône de bateau au point de départ et d’une icône d’ancre au point d’arrivée
+            Rectangle rect = new Rectangle(new Point(100, 200), new Size(new Point(32, 32)));
+
             Image image1 = Image.FromFile("Bateau.Png");
-            e.Graphics.DrawImage(image1,rect,100,200,width,height,units );
-            
-    
+            e.Graphics.DrawImage(image1, rect);
+            Rectangle rect2 = new Rectangle(new Point(200, 100), new Size(new Point(32, 32)));
+            Image image2 = Image.FromFile("Port.Png");
+            e.Graphics.DrawImage(image2, rect2);
         }
+
+
     }
 }
