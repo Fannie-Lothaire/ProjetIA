@@ -1,0 +1,29 @@
+F:\IA\ProjetIAv0\ProjetIAv0\bin\Debug\ProjetIAv0.exe.config
+F:\IA\ProjetIAv0\ProjetIAv0\bin\Debug\ProjetIAv0.exe
+F:\IA\ProjetIAv0\ProjetIAv0\bin\Debug\ProjetIAv0.pdb
+F:\IA\ProjetIAv0\ProjetIAv0\obj\Debug\ProjetIAv0.csprojAssemblyReference.cache
+F:\IA\ProjetIAv0\ProjetIAv0\obj\Debug\ProjetIAv0.Properties.Resources.resources
+F:\IA\ProjetIAv0\ProjetIAv0\obj\Debug\ProjetIAv0.csproj.GenerateResource.cache
+F:\IA\ProjetIAv0\ProjetIAv0\obj\Debug\ProjetIAv0.csproj.CoreCompileInputs.cache
+F:\IA\ProjetIAv0\ProjetIAv0\obj\Debug\ProjetIAv0.exe
+F:\IA\ProjetIAv0\ProjetIAv0\obj\Debug\ProjetIAv0.pdb
+F:\IA\ProjetIAv0\ProjetIAv0\obj\Debug\ProjetIAv0.Form1.resources
+C:\Users\Agathe Sauvage\Downloads\ProjetIAv0\bin\Debug\ProjetIAv0.exe.config
+C:\Users\Agathe Sauvage\Downloads\ProjetIAv0\obj\Debug\ProjetIAv0.exe
+C:\Users\Agathe Sauvage\Downloads\ProjetIAv0\obj\Debug\ProjetIAv0.pdb
+C:\Users\Agathe Sauvage\Downloads\ProjetIAv0\bin\Debug\ProjetIAv0.exe
+C:\Users\Agathe Sauvage\Downloads\ProjetIAv0\bin\Debug\ProjetIAv0.pdb
+C:\Users\Agathe Sauvage\Downloads\ProjetIAv0\obj\Debug\ProjetIAv0.csprojResolveAssemblyReference.cache
+C:\Users\Agathe Sauvage\Downloads\ProjetIAv0\obj\Debug\ProjetIAv0.Form1.resources
+C:\Users\Agathe Sauvage\Downloads\ProjetIAv0\obj\Debug\ProjetIAv0.Properties.Resources.resources
+C:\Users\Agathe Sauvage\Downloads\ProjetIAv0\obj\Debug\ProjetIAv0.csproj.GenerateResource.Cache
+G:\2A\IA\Projet avec icône bateau\bin\Debug\ProjetIAv0.exe.config
+G:\2A\IA\Projet avec icône bateau\bin\Debug\ProjetIAv0.exe
+G:\2A\IA\Projet avec icône bateau\bin\Debug\ProjetIAv0.pdb
+G:\2A\IA\Projet avec icône bateau\obj\Debug\ProjetIAv0.csprojAssemblyReference.cache
+G:\2A\IA\Projet avec icône bateau\obj\Debug\ProjetIAv0.Form1.resources
+G:\2A\IA\Projet avec icône bateau\obj\Debug\ProjetIAv0.Properties.Resources.resources
+G:\2A\IA\Projet avec icône bateau\obj\Debug\ProjetIAv0.csproj.GenerateResource.cache
+G:\2A\IA\Projet avec icône bateau\obj\Debug\ProjetIAv0.csproj.CoreCompileInputs.cache
+G:\2A\IA\Projet avec icône bateau\obj\Debug\ProjetIAv0.exe
+G:\2A\IA\Projet avec icône bateau\obj\Debug\ProjetIAv0.pdb
