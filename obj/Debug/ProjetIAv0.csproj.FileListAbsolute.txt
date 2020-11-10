@@ -36,3 +36,6 @@ C:\Users\flothaire\Desktop\ProjetIA\obj\Debug\ProjetIAv0.csprojResolveAssemblyRe
 C:\Users\flothaire\Desktop\ProjetIA\obj\Debug\ProjetIAv0.Form1.resources
 C:\Users\flothaire\Desktop\ProjetIA\obj\Debug\ProjetIAv0.Properties.Resources.resources
 C:\Users\flothaire\Desktop\ProjetIA\obj\Debug\ProjetIAv0.csproj.GenerateResource.Cache
+C:\Users\Agathe Sauvage\Documents\test git\ProjetIA\bin\Debug\ProjetIAv0.exe.config
+C:\Users\Agathe Sauvage\Documents\test git\ProjetIA\obj\Debug\ProjetIAv0.exe
+C:\Users\Agathe Sauvage\Documents\test git\ProjetIA\obj\Debug\ProjetIAv0.pdb
