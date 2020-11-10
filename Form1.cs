@@ -90,8 +90,27 @@ namespace ProjetIAv0
             Rectangle rect2 = new Rectangle(new Point(200, 100), new Size(new Point(32, 32)));
             Image image2 = Image.FromFile("Port.Png");
             e.Graphics.DrawImage(image2, rect2);
-        }
+            start(e.Graphics);
 
+        }
+        private void start(Graphics g)
+        {
+
+            Noeud startnode = new Noeud(100, 200);
+
+            Noeud endnode = new Noeud(130, 233);
+            SearchTree st = new SearchTree();
+            List<GenericNode> chemin = new List<GenericNode>();
+            chemin = st.RechercheSolutionAEtoile(startnode, endnode);
+            TreeView t = new TreeView();
+            pictureBox1.Controls.Add(t);
+            st.GetSearchTree(t);
+            foreach (Noeud n in chemin)
+            {
+                g.DrawLine(new Pen(Color.Black), new Point((int)startnode.absisse, (int)startnode.ordonnee), new Point((int)n.absisse, (int)n.ordonnee));
+            }
+
+        }
 
     }
 }

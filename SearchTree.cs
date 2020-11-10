@@ -40,7 +40,7 @@ namespace ProjetTest
             return null;
         }
 
-        public List<GenericNode> RechercheSolutionAEtoile(GenericNode N0)
+        public List<GenericNode> RechercheSolutionAEtoile(GenericNode N0, GenericNode endnode)
         {
             L_Ouverts = new List<GenericNode>();
             L_Fermes = new List<GenericNode>();
@@ -49,7 +49,7 @@ namespace ProjetTest
             L_Ouverts.Add(N0);
 
             // tant que le noeud n'est pas terminal et que ouverts n'est pas vide
-            while (L_Ouverts.Count != 0 && N.EndState() == false)
+            while (L_Ouverts.Count != 0 && N.EndState(endnode) == false)
             {
                 // Le meilleur noeud des ouverts est supposé placé en tête de liste
                 // On le place dans les fermés
