@@ -130,60 +130,110 @@ namespace ProjetTest
             //calcul de l'heuristique
             return 2;
         }
-        public override double CalculeHCost2(GenericNode Nf)
+        public override List<GenericNode> GetListMeilleursSucc(GenericNode Nf)
         {
-            //calcul de l'heuristique
-            //on sélectionne les meilleurs voisins du premier point en fonction des coordonnées du point final
-            double HCostval = 0;
-            string cote;
-            string hauteur;
-            List<GenericNode> MeilleursVoisins = new List<GenericNode>();
-            GenericNode AutreVoisin; //pas utilisé au premier déplacement mais peut être utile par la suite
             List<GenericNode> ListeNoeud = GetListSucc();
-            if (Nf.absisse > this.absisse) { cote = "droit"; }
-            else { cote = "gauche"; }
-            if (Nf.ordonnee > this.ordonnee) { hauteur = "haut"; }
-            else { hauteur = "bas"; }
-            if (cote == "droit" && hauteur == "haut")
+            List<GenericNode> MeilleursVoisins = new List<GenericNode>();
+            if (Nf.absisse == this.absisse)
             {
-                //fleche droite haute et horizontale
-                MeilleursVoisins.Add(ListeNoeud[6]);
-                MeilleursVoisins.Add(ListeNoeud[7]);
-                AutreVoisin = ListeNoeud[4];
-            }
-            else
-            {
-                if (cote == "droit" && hauteur == "bas")
+                if (Nf.ordonnee > this.ordonnee)
                 {
-                    //fleche droite basse et horizontale
-                    MeilleursVoisins.Add(ListeNoeud[6]);
-                    MeilleursVoisins.Add(ListeNoeud[5]);
-                    AutreVoisin = ListeNoeud[3];
+                    //fleche vers le haut
+                    MeilleursVoisins.Add(ListeNoeud[4]);
                 }
                 else
                 {
-                    if (cote == "gauche" && hauteur == "haut")
+                    //fleche vers le bas
+                    MeilleursVoisins.Add(ListeNoeud[3]);
+                }
+
+            }
+            else
+            {
+                if (Nf.ordonnee == this.ordonnee)
+                {
+                    if (Nf.absisse > this.absisse)
                     {
-                        //fleche gauche haute et horizontale
-                        MeilleursVoisins.Add(ListeNoeud[1]);
-                        MeilleursVoisins.Add(ListeNoeud[2]);
-                        AutreVoisin = ListeNoeud[4];
+                        //fleche vers la droite
+                        MeilleursVoisins.Add(ListeNoeud[6]);
                     }
                     else
                     {
-                        //fleche gauche basse et horizontale
+                        //fleche vers la gauche
                         MeilleursVoisins.Add(ListeNoeud[1]);
-                        MeilleursVoisins.Add(ListeNoeud[0]);
-                        AutreVoisin = ListeNoeud[3];
                     }
+
+                }
+                else
+                {
+                    if (Nf.absisse > this.absisse && Nf.ordonnee > this.ordonnee)
+                    {
+                        //fleche droite haute et horizontale et oblique
+                        MeilleursVoisins.Add(ListeNoeud[6]);
+                        MeilleursVoisins.Add(ListeNoeud[7]);
+                        MeilleursVoisins.Add(ListeNoeud[4]);
+                    }
+                    else
+                    {
+                        if (Nf.absisse > this.absisse && Nf.ordonnee < this.ordonnee)
+                        {
+                            //fleche droite basse et horizontale et oblique
+                            MeilleursVoisins.Add(ListeNoeud[6]);
+                            MeilleursVoisins.Add(ListeNoeud[5]);
+                            MeilleursVoisins.Add(ListeNoeud[3]);
+                        }
+                        else
+                        {
+                            if (Nf.absisse < this.absisse && Nf.ordonnee > this.ordonnee)
+                            {
+                                //fleche gauche haute et horizontale et oblique
+                                MeilleursVoisins.Add(ListeNoeud[1]);
+                                MeilleursVoisins.Add(ListeNoeud[2]);
+                                MeilleursVoisins.Add(ListeNoeud[4]);
+                            }
+                            else
+                            {
+                                //fleche gauche basse et horizontale et oblique
+                                MeilleursVoisins.Add(ListeNoeud[1]);
+                                MeilleursVoisins.Add(ListeNoeud[0]);
+                                MeilleursVoisins.Add(ListeNoeud[3]);
+                            }
+                        }
+                    }
+                }
+
+
+            }
+            return MeilleursVoisins;
+        }
+        public override double CalculeHCost2(GenericNode Nf)
+        {
+            //calcul de l'heuristique
+            //on sélectionne les meilleurs voisins du noeud en fonction des coordonnées du point final
+            double HCostval = 0;
+
+            //calcul tous les trajets possibles tant qu'on arrive pas au noeud final Nf
+            GenericNode noeudtest = this;
+            List<double> temps_estime = new List<double>();
+            while (noeudtest != Nf)
+            {
+                List<GenericNode> MeilleursVoisins = noeudtest.GetListMeilleursSucc(Nf);
+                for (int i = 0; i < MeilleursVoisins.Count; i++)
+                {
+                    //regarder si deux ou trois noeud on le même parent pour leur associer le bon temps estimé précédent
+                    //affecter un indice aux meilleurs noeuds pour pouvoir les retrouver et affecter les bons temps 
+
+
+                    //calcul du temps estimé entre deux noeuds et mise à jour du nouveau noeud à tester (problématique ici la boucle for, à changer)
+                    temps_estime[i] += time_estimation(noeudtest.absisse, noeudtest.ordonnee, MeilleursVoisins[i].absisse, MeilleursVoisins[i].ordonnee);
+                    noeudtest = MeilleursVoisins[i];
                 }
             }
 
-            //testons si ca marche
-            // verifier si la somme des vitesstes horizontale et verticale est supérieure ou non à la vitesse en diagonale 
 
             return HCostval;
         }
+
 
         public override string ToString()
         {

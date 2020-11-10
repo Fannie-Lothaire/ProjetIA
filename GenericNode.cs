@@ -64,6 +64,7 @@ namespace ProjetTest
         public abstract double GetArcCost(GenericNode N2);
         public abstract bool EndState(GenericNode N2);
         public abstract List<GenericNode> GetListSucc();
+        public abstract List<GenericNode> GetListMeilleursSucc(GenericNode Nf);
         public abstract double CalculeHCost();
         public abstract double CalculeHCost2(GenericNode Nf); //test d'un calcul heuristique
         // On peut aussi penser à surcharger ToString() pour afficher correctement un état
