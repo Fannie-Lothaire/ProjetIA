@@ -11,6 +11,7 @@ namespace ProjetTest
     {
         public Noeud(double abs, double ord)
         {
+            //test
             ParentNode = null;
             Enfants = new List<GenericNode>();
             absisse = abs;
