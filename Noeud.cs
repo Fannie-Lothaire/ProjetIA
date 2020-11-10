@@ -172,6 +172,7 @@ namespace ProjetTest
                 }
             }
 
+            //testons si ca marche
             // verifier si la somme des vitesstes horizontale et verticale est supérieure ou non à la vitesse en diagonale 
 
             return HCostval;
