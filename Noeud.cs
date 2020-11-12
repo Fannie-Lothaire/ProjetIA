@@ -104,6 +104,7 @@ namespace ProjetTest
             }
             return false;
         }
+
         public override List<GenericNode> GetListSucc()
         {
             //quadrillage carré
@@ -128,7 +129,7 @@ namespace ProjetTest
         public override double CalculeHCost()
         {
             //calcul de l'heuristique
-            return 2;
+            return 0;
         }
         public override List<GenericNode> GetListMeilleursSucc(GenericNode Nf)
         {
@@ -209,15 +210,37 @@ namespace ProjetTest
         public override double CalculeHCost2(GenericNode Nf)
         {
             //calcul de l'heuristique
+            //le but est de retourner le temps minimal qu'il est possible d'avoir pour rejoindre le noeud final
+
+
+
+
             //on sélectionne les meilleurs voisins du noeud en fonction des coordonnées du point final
             double HCostval = 0;
 
             //calcul tous les trajets possibles tant qu'on arrive pas au noeud final Nf
             GenericNode noeudtest = this;
             List<double> temps_estime = new List<double>();
-            while (noeudtest != Nf)
+            List<GenericNode> MeilleursVoisins = noeudtest.GetListMeilleursSucc(Nf);
+            int nbpremiervoisins = MeilleursVoisins.Count;
+            double testime = 0;
+
+            //avec endstate peut être
+          
+            while (EndState(noeudtest)==false && MeilleursVoisins!=null && nbpremiervoisins>0)
             {
-                List<GenericNode> MeilleursVoisins = noeudtest.GetListMeilleursSucc(Nf);
+                //on calcule le temps en fonction de chaque direction que prend le bateau et en fonction du sens du vent
+                //correspond au testimation entre deux points avec 3 points possibles qui sont les meilleurs successeurs
+                //par contre il faut connaitre la vitesse du vent -> est ce qu'on arrive à y accéder ou est ce qu'on prend la plus faible/grande
+                //et aussi sa direction
+                //on regarde si l'association des directions horizontale et verticale est plus rapide que celle on diago
+                // on regarde quelle direction est la plus rapide et laquelle est la plus lente
+                testime = time_estimation(noeudtest.absisse, noeudtest.ordonnee, MeilleursVoisins[nbpremiervoisins].absisse, MeilleursVoisins[nbpremiervoisins].ordonnee);
+                noeudtest = MeilleursVoisins[nbpremiervoisins];
+
+
+
+                MeilleursVoisins.Remove(MeilleursVoisins[nbpremiervoisins]);
                 for (int i = 0; i < MeilleursVoisins.Count; i++)
                 {
                     //regarder si deux ou trois noeud on le même parent pour leur associer le bon temps estimé précédent
@@ -228,9 +251,10 @@ namespace ProjetTest
                     temps_estime[i] += time_estimation(noeudtest.absisse, noeudtest.ordonnee, MeilleursVoisins[i].absisse, MeilleursVoisins[i].ordonnee);
                     noeudtest = MeilleursVoisins[i];
                 }
+                MeilleursVoisins = noeudtest.GetListMeilleursSucc(Nf);
             }
 
-
+            //on renvoie une estimation du temps minimal pour arriver à la fin ? (pourquoi on prend pas le max, plus le max est petit mieux c'est et moins on prend de risques ??)
             return HCostval;
         }
 

@@ -39,3 +39,13 @@ C:\Users\flothaire\Desktop\ProjetIA\obj\Debug\ProjetIAv0.csproj.GenerateResource
 C:\Users\Agathe Sauvage\Documents\test git\ProjetIA\bin\Debug\ProjetIAv0.exe.config
 C:\Users\Agathe Sauvage\Documents\test git\ProjetIA\obj\Debug\ProjetIAv0.exe
 C:\Users\Agathe Sauvage\Documents\test git\ProjetIA\obj\Debug\ProjetIAv0.pdb
+C:\Users\Mariam\Documents\GitHub\ProjetIA\bin\Debug\ProjetIAv0.exe.config
+C:\Users\Mariam\Documents\GitHub\ProjetIA\bin\Debug\ProjetIAv0.exe
+C:\Users\Mariam\Documents\GitHub\ProjetIA\bin\Debug\ProjetIAv0.pdb
+C:\Users\Mariam\Documents\GitHub\ProjetIA\obj\Debug\ProjetIAv0.csprojAssemblyReference.cache
+C:\Users\Mariam\Documents\GitHub\ProjetIA\obj\Debug\ProjetIAv0.Form1.resources
+C:\Users\Mariam\Documents\GitHub\ProjetIA\obj\Debug\ProjetIAv0.Properties.Resources.resources
+C:\Users\Mariam\Documents\GitHub\ProjetIA\obj\Debug\ProjetIAv0.csproj.GenerateResource.cache
+C:\Users\Mariam\Documents\GitHub\ProjetIA\obj\Debug\ProjetIAv0.csproj.CoreCompileInputs.cache
+C:\Users\Mariam\Documents\GitHub\ProjetIA\obj\Debug\ProjetIAv0.exe
+C:\Users\Mariam\Documents\GitHub\ProjetIA\obj\Debug\ProjetIAv0.pdb

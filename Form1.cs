@@ -37,7 +37,7 @@ namespace ProjetIAv0
             Noeud n0 = new Noeud(x0, y0);
            double t = n0.time_estimation(x0, y0, xf, yf);
            // t = 2;
-            MessageBox.Show("Temps le plus cours pour aller du point ("+x0+","+y0+") au point ("+xf+","+yf+")"+ " est de : \n" + t.ToString());
+            MessageBox.Show("Temps le plus petit pour aller du point ("+x0+","+y0+") au point ("+xf+","+yf+")"+ " est de : \n" + t.ToString());
 
         }
 
