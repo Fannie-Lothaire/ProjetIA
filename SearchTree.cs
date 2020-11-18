@@ -40,7 +40,7 @@ namespace ProjetTest
             return null;
         }
 
-        public List<GenericNode> RechercheSolutionAEtoile(GenericNode N0, GenericNode endnode)
+        public List<GenericNode> RechercheSolutionAEtoile(GenericNode N0, GenericNode endnode,double vitesse, double direction)
         {
             L_Ouverts = new List<GenericNode>();
             L_Fermes = new List<GenericNode>();
@@ -57,7 +57,7 @@ namespace ProjetTest
                 L_Fermes.Add(N);
 
                 // Il faut trouver les noeuds successeurs de N
-                this.MAJSuccesseurs(N);
+                this.MAJSuccesseurs(N,endnode, vitesse, direction);
                 // Inutile de retrier car les insertions ont été faites en respectant l'ordre
 
                 // On prend le meilleur, donc celui en position 0, pour continuer à explorer les états
@@ -90,7 +90,7 @@ namespace ProjetTest
             return _LN;
         }
 
-        private void MAJSuccesseurs(GenericNode N)
+        private void MAJSuccesseurs(GenericNode N, GenericNode Nf, double vitesse, double direction)
         {
             // On fait appel à GetListSucc, méthode abstraite qu'on doit réécrire pour chaque
             // problème. Elle doit retourner la liste complète des noeuds successeurs de N.
@@ -107,10 +107,10 @@ namespace ProjetTest
                     {
                         // Il existe, donc on l'a déjà vu, N2 n'est qu'une copie de N2Bis
                         // Le nouveau chemin passant par N est-il meilleur ?
-                        if (N.GetGCost() + N.GetArcCost(N2) < N2bis.GetGCost())
+                        if (N.GetGCost() + N.GetArcCost(N2,vitesse,direction) < N2bis.GetGCost())
                         {
                             // Mise à jour de N2bis
-                            N2bis.SetGCost(N.GetGCost() + N.GetArcCost(N2));
+                            N2bis.SetGCost(N.GetGCost() + N.GetArcCost(N2, vitesse, direction));
                             // HCost pas recalculé car toujours bon
                             N2bis.RecalculeCoutTotal(); // somme de GCost et HCost
                             // Mise à jour de la famille ....
@@ -125,9 +125,9 @@ namespace ProjetTest
                     else
                     {
                         // N2 est nouveau, MAJ et insertion dans les ouverts
-                        N2.SetGCost(N.GetGCost() + N.GetArcCost(N2));
+                        N2.SetGCost(N.GetGCost() + N.GetArcCost(N2, vitesse, direction));
                         N2.SetNoeud_Parent(N);
-                        N2.calculCoutTotal(); // somme de GCost et HCost avec modification de Hcost
+                        N2.calculCoutTotal(Nf,vitesse,direction); // somme de GCost et HCost avec modification de Hcost
                         this.InsertNewNodeInOpenList(N2);
                     }
                 }
@@ -181,6 +181,7 @@ namespace ProjetTest
 
             AjouteBranche(L_Fermes[0], TN);
         }
+
 
         // AjouteBranche est exclusivement appelée par GetSearchTree; les noeuds sont ajoutés de manière récursive
         private void AjouteBranche(GenericNode GN, TreeNode TN)

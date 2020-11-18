@@ -14,7 +14,8 @@ namespace ProjetIAv0
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            //Application.Run(new frmAffichage(100,200,200,100,50,170));
+            Application.Run(new frmAccueil());
         }
     }
 }

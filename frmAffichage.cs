@@ -11,13 +11,25 @@ using System.Windows.Forms;
 
 namespace ProjetIAv0
 {
-    public partial class Form1 : Form
+    public partial class frmAffichage : Form
     {
+        private int _x0 { get; set; }
+        private int _y0 { get; set; }
+        private int _xf { get; set; }
+        private int _yf { get; set; }
+        private double _speed { get; set; }
+        private double _direction { get; set; }
 
-        public Form1()
+        public frmAffichage(int x0, int y0, int xf, int yf, double speed, double direction)
         {
             InitializeComponent();
-
+            _x0 = x0;
+            _y0 = y0;
+            _xf = xf;
+            _yf = yf;
+            _speed = speed;
+            _direction = direction;
+/*
             //Ensuite, pour afficher un segment, vous pouvez appeler le code suivant:
             // soient x1, y1, x2, y2 des double utilisés pour définir les 2 extrémités d’un segment.
             int x1 = 50;
@@ -30,20 +42,16 @@ namespace ProjetIAv0
             Graphics g = this.CreateGraphics();
             g.DrawLine(penwhite, new Point((int)x1, this.Height - (int)y1), new Point((int)x2, this.Height - (int)y2));
             
-            int x0 = 100;
-            int y0 = 200;
-            int xf = 200;
-            int yf = 100;
             Noeud n0 = new Noeud(x0, y0);
-           double t = n0.time_estimation(x0, y0, xf, yf);
+           double t = n0.time_estimation(x0, y0, xf, yf,speed,direction);
            // t = 2;
             MessageBox.Show("Temps le plus petit pour aller du point ("+x0+","+y0+") au point ("+xf+","+yf+")"+ " est de : \n" + t.ToString());
-
+            */
         }
 
 
-        private Boolean clicked_once = false;
-        public void pictureBox1_Click(object sender, EventArgs e)
+        //private Boolean clicked_once = false;
+       /* public void pictureBox1_Click(object sender, EventArgs e)
         { // permet de récupérer le point d'où veut partir l'utilisateur et le point où il veut arriver
             this.Cursor = new Cursor(Cursor.Current.Handle);
             if (clicked_once == false)
@@ -59,14 +67,14 @@ namespace ProjetIAv0
                 int x1 = Cursor.Position.X;
                 int y1 = Cursor.Position.Y;
             }
-        }
+        }*/
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         { // affichage d'une grille
             int ligneMax = 30;
             int colonneMax = 30;
-            int tileHeight = 32; // code à adapter
-            int tileWidth = 32;
+            int tileHeight = 15; // code à adapter
+            int tileWidth = 15;
             for (int ligne = 0; ligne != ligneMax; ligne++)
             {
                 int lignePosition = ligne * tileHeight;
@@ -79,35 +87,41 @@ namespace ProjetIAv0
             }
 
             //test affichage d'un segment du point de départ au point d’arrivée
-            Pen pen = new Pen(Color.Pink); // d’autres couleurs sont disponibles
-            e.Graphics.DrawLine(pen, new Point(100, 200), new Point(200, 100));
+           // Pen pen = new Pen(Color.Pink); // d’autres couleurs sont disponibles
+           // e.Graphics.DrawLine(pen, new Point(_x0, _y0), new Point(_xf, _yf));
             //(x0,y0) = (100, 200) ; (xf,yf) = (200,100) et le vent est constant à 50km/h et souffle dans la direction 30° (vers le nord-est).
             // affichage d'une icône de bateau au point de départ et d’une icône d’ancre au point d’arrivée
-            Rectangle rect = new Rectangle(new Point(100, 200), new Size(new Point(32, 32)));
-
+            // Rectangle rect = new Rectangle(new Point(_x0, _y0), new Size(new Point(32, 32)));
+            Rectangle rect = new Rectangle(new Point(_x0, _y0), new Size(new Point(15, 15)));
             Image image1 = Image.FromFile("Bateau.Png");
             e.Graphics.DrawImage(image1, rect);
-            Rectangle rect2 = new Rectangle(new Point(200, 100), new Size(new Point(32, 32)));
+            //Rectangle rect2 = new Rectangle(new Point(_xf, _yf), new Size(new Point(32, 32)));
+            Rectangle rect2 = new Rectangle(new Point(_xf, _yf), new Size(new Point(15, 15)));
             Image image2 = Image.FromFile("Port.Png");
             e.Graphics.DrawImage(image2, rect2);
             start(e.Graphics);
 
         }
+
         private void start(Graphics g)
         {
 
-            Noeud startnode = new Noeud(100, 200);
+            Noeud startnode = new Noeud(_x0, _y0);
 
+            //le programme s'arrête que avec ca pour l'instant
             Noeud endnode = new Noeud(130, 233);
+            //Noeud endnode = new Noeud(_xf, _yf);
             SearchTree st = new SearchTree();
             List<GenericNode> chemin = new List<GenericNode>();
-            chemin = st.RechercheSolutionAEtoile(startnode, endnode);
+            chemin = st.RechercheSolutionAEtoile(startnode, endnode,_speed,_direction);
             TreeView t = new TreeView();
             pictureBox1.Controls.Add(t);
             st.GetSearchTree(t);
+            Noeud n0 = startnode;
             foreach (Noeud n in chemin)
             {
-                g.DrawLine(new Pen(Color.Black), new Point((int)startnode.absisse, (int)startnode.ordonnee), new Point((int)n.absisse, (int)n.ordonnee));
+                g.DrawLine(new Pen(Color.Pink), new Point((int)n0.absisse, (int)n0.ordonnee), new Point((int)n.absisse, (int)n.ordonnee));
+                n0 = n;
             }
 
         }

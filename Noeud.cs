@@ -25,12 +25,15 @@ namespace ProjetTest
         // Cette fonction prend en paramètres 2 points
         //un point de départ P1(x1,y1) et un point d’arrivée P2(x2,y2)
         // il n’est donc pas possible d’appeler cette fonction pour des distances supérieures à 10 Km
-        public double time_estimation(double x1, double y1, double x2, double y2)
+        public double time_estimation(double x1, double y1, double x2, double y2, double vitesse, double direction)
         {
             double distance = Math.Sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
             if (distance > 10) return 1000000;
-            double windspeed = get_wind_speed((x1 + x2) / 2.0, (y1 + y2) / 2.0);
-            double winddirection = get_wind_direction((x1 + x2) / 2.0, (y1 + y2) / 2.0);
+            //double windspeed = get_wind_speed((x1 + x2) / 2.0, (y1 + y2) / 2.0);
+            //double winddirection = get_wind_direction((x1 + x2) / 2.0, (y1 + y2) / 2.0);
+            double windspeed = get_wind_speed(vitesse);
+            double winddirection = get_wind_direction(direction);
+
             double boatspeed;
             double boatdirection = Math.Atan2(y2 - y1, x2 - x1) * 180 / Math.PI; // On ramène entre 0 et 360
             if (boatdirection < 0) boatdirection = boatdirection + 360;
@@ -60,7 +63,9 @@ namespace ProjetTest
         }
 
         public char cas { get; set; } // à modifier en ‘b’ ou ‘c’ selon le choix de l’utilisateur
-        public double get_wind_speed(double x, double y)
+
+        //modification des paramètres et des fonctions pour pouvoir faire avec n'importe quel paramètre
+        /*public double get_wind_speed(double x, double y)
         {
             if (cas == 'a') return 50;
             else if (cas == 'b') if (y > 150)
@@ -75,6 +80,15 @@ namespace ProjetTest
                     return 180;
                 else return 90;
             else if (y > 150) return 170; else return 65;
+        }*/
+
+        public double get_wind_speed(double vitesse)
+        {
+            return vitesse;
+        }
+        public double get_wind_direction(double direction)
+        {
+            return direction;
         }
 
 
@@ -90,10 +104,10 @@ namespace ProjetTest
             else return false;
         }
 
-        public override double GetArcCost(GenericNode N2)
+        public override double GetArcCost(GenericNode N2, double vitesse, double direction)
         {
             
-            return time_estimation(N2.absisse,N2.ordonnee,this.absisse,this.ordonnee);
+            return time_estimation(N2.absisse,N2.ordonnee,this.absisse,this.ordonnee,vitesse,direction);
         }
         public override bool EndState(GenericNode endnode)
         {
@@ -126,12 +140,12 @@ namespace ProjetTest
         
             return ListeNoeud;
         }
-        public override double CalculeHCost()
+        public override double CalculeHCost2()
         {
             //calcul de l'heuristique
             return 0;
         }
-        public override List<GenericNode> GetListMeilleursSucc(GenericNode Nf)
+       /* public override List<GenericNode> GetListMeilleursSucc(GenericNode Nf)
         {
             List<GenericNode> ListeNoeud = GetListSucc();
             List<GenericNode> MeilleursVoisins = new List<GenericNode>();
@@ -207,57 +221,82 @@ namespace ProjetTest
             }
             return MeilleursVoisins;
         }
-        public override double CalculeHCost2(GenericNode Nf)
+        /* public override double CalculeHCost2(GenericNode Nf)
+         {
+             //calcul de l'heuristique
+             //le but est de retourner le temps minimal qu'il est possible d'avoir pour rejoindre le noeud final
+
+
+
+
+             //on sélectionne les meilleurs voisins du noeud en fonction des coordonnées du point final
+             double HCostval = 0;
+
+             //calcul tous les trajets possibles tant qu'on arrive pas au noeud final Nf
+             GenericNode noeudtest = this;
+             List<double> temps_estime = new List<double>();
+             List<GenericNode> MeilleursVoisins = noeudtest.GetListMeilleursSucc(Nf);
+             int nbpremiervoisins = MeilleursVoisins.Count;
+             double testime = 0;
+
+             //avec endstate peut être
+
+             while (EndState(noeudtest)==false && MeilleursVoisins!=null && nbpremiervoisins>0)
+             {
+                 //on calcule le temps en fonction de chaque direction que prend le bateau et en fonction du sens du vent
+                 //correspond au testimation entre deux points avec 3 points possibles qui sont les meilleurs successeurs
+                 //par contre il faut connaitre la vitesse du vent -> est ce qu'on arrive à y accéder ou est ce qu'on prend la plus faible/grande
+                 //et aussi sa direction
+                 //on regarde si l'association des directions horizontale et verticale est plus rapide que celle on diago
+                 // on regarde quelle direction est la plus rapide et laquelle est la plus lente
+                 testime = time_estimation(noeudtest.absisse, noeudtest.ordonnee, MeilleursVoisins[nbpremiervoisins].absisse, MeilleursVoisins[nbpremiervoisins].ordonnee);
+                 noeudtest = MeilleursVoisins[nbpremiervoisins];
+
+
+
+                 MeilleursVoisins.Remove(MeilleursVoisins[nbpremiervoisins]);
+                 for (int i = 0; i < MeilleursVoisins.Count; i++)
+                 {
+                     //regarder si deux ou trois noeud on le même parent pour leur associer le bon temps estimé précédent
+                     //affecter un indice aux meilleurs noeuds pour pouvoir les retrouver et affecter les bons temps 
+
+
+                     //calcul du temps estimé entre deux noeuds et mise à jour du nouveau noeud à tester (problématique ici la boucle for, à changer)
+                     temps_estime[i] += time_estimation(noeudtest.absisse, noeudtest.ordonnee, MeilleursVoisins[i].absisse, MeilleursVoisins[i].ordonnee);
+                     noeudtest = MeilleursVoisins[i];
+                 }
+                 MeilleursVoisins = noeudtest.GetListMeilleursSucc(Nf);
+             }
+
+             //on renvoie une estimation du temps minimal pour arriver à la fin ? (pourquoi on prend pas le max, plus le max est petit mieux c'est et moins on prend de risques ??)
+             return HCostval;
+         }*/
+
+        public override double CalculeHCost(GenericNode Nf,double vitesse, double direction)
         {
-            //calcul de l'heuristique
-            //le but est de retourner le temps minimal qu'il est possible d'avoir pour rejoindre le noeud final
+            double x1 = this.absisse; double y1 = this.ordonnee;double x2 = Nf.absisse;double y2 = Nf.ordonnee;
+            //heuristique ou on calcule l'heuristique du temps à vol d'oiseau entre le point étudier et le final
+            //on calcul la distance à vol d'oiseau 
+            double distance = Math.Sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
 
+            //on calcul la vitesse max du bateau
+            double boatdirection = Math.Atan2(y2 - y1, x2 - x1) * 180 / Math.PI; // On ramène entre 0 et 360
+            if (boatdirection < 0) boatdirection = boatdirection + 360;
+            double alpha = Math.Abs(boatdirection - direction);
 
+            double boatspeed = (0.6 + 0.3 * alpha / 45) * vitesse;
+            double boatspeed2 = (0.9 - 0.2 * (alpha - 45) / 45) * vitesse;
+            double boatspeed3 = 0.7 * (1 - (alpha - 90) / 60) * vitesse;
+            double vitbateau = Math.Max(boatspeed, boatspeed2);
+            vitbateau = Math.Max(vitbateau, boatspeed3);
 
+            // estimation du temps de navigation entre p1 et p2
+            double HCostval =distance / vitbateau;
 
-            //on sélectionne les meilleurs voisins du noeud en fonction des coordonnées du point final
-            double HCostval = 0;
-
-            //calcul tous les trajets possibles tant qu'on arrive pas au noeud final Nf
-            GenericNode noeudtest = this;
-            List<double> temps_estime = new List<double>();
-            List<GenericNode> MeilleursVoisins = noeudtest.GetListMeilleursSucc(Nf);
-            int nbpremiervoisins = MeilleursVoisins.Count;
-            double testime = 0;
-
-            //avec endstate peut être
-          
-            while (EndState(noeudtest)==false && MeilleursVoisins!=null && nbpremiervoisins>0)
-            {
-                //on calcule le temps en fonction de chaque direction que prend le bateau et en fonction du sens du vent
-                //correspond au testimation entre deux points avec 3 points possibles qui sont les meilleurs successeurs
-                //par contre il faut connaitre la vitesse du vent -> est ce qu'on arrive à y accéder ou est ce qu'on prend la plus faible/grande
-                //et aussi sa direction
-                //on regarde si l'association des directions horizontale et verticale est plus rapide que celle on diago
-                // on regarde quelle direction est la plus rapide et laquelle est la plus lente
-                testime = time_estimation(noeudtest.absisse, noeudtest.ordonnee, MeilleursVoisins[nbpremiervoisins].absisse, MeilleursVoisins[nbpremiervoisins].ordonnee);
-                noeudtest = MeilleursVoisins[nbpremiervoisins];
-
-
-
-                MeilleursVoisins.Remove(MeilleursVoisins[nbpremiervoisins]);
-                for (int i = 0; i < MeilleursVoisins.Count; i++)
-                {
-                    //regarder si deux ou trois noeud on le même parent pour leur associer le bon temps estimé précédent
-                    //affecter un indice aux meilleurs noeuds pour pouvoir les retrouver et affecter les bons temps 
-
-
-                    //calcul du temps estimé entre deux noeuds et mise à jour du nouveau noeud à tester (problématique ici la boucle for, à changer)
-                    temps_estime[i] += time_estimation(noeudtest.absisse, noeudtest.ordonnee, MeilleursVoisins[i].absisse, MeilleursVoisins[i].ordonnee);
-                    noeudtest = MeilleursVoisins[i];
-                }
-                MeilleursVoisins = noeudtest.GetListMeilleursSucc(Nf);
-            }
-
-            //on renvoie une estimation du temps minimal pour arriver à la fin ? (pourquoi on prend pas le max, plus le max est petit mieux c'est et moins on prend de risques ??)
+            //double HCostval = HCostval = this.time_estimation(this.absisse, this.ordonnee, Nf.absisse, Nf.ordonnee,vitesse,direction);
             return HCostval;
+            //return 0;
         }
-
 
         public override string ToString()
         {
@@ -265,11 +304,11 @@ namespace ProjetTest
             string coord = ("(" + this.absisse + "," + this.ordonnee + ")");
             return coord;
         }
-        public int compare(Noeud n1, Noeud n2) //on compare les successeurs
+        public int compare(Noeud n1, Noeud n2,double vitesse,double direction) //on compare les successeurs
         {
-            if (this.GetArcCost(n1) < this.GetArcCost(n2))
+            if (this.GetArcCost(n1,vitesse,direction) < this.GetArcCost(n2,vitesse,direction))
                 return -1;
-            else if (this.GetArcCost(n1) > this.GetArcCost(n2))
+            else if (this.GetArcCost(n1,vitesse,direction) > this.GetArcCost(n2,vitesse,direction))
                 return 1;
             else return 0;
         }
