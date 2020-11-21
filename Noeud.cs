@@ -111,12 +111,28 @@ namespace ProjetTest
         }
         public override bool EndState(GenericNode endnode)
         {
-            Rectangle rect2 = new Rectangle(new Point((int)endnode.absisse, (int)endnode.ordonnee), new Size(new Point(10, 10)));
+            for(double i= endnode.absisse-3;i< endnode.absisse + 3; i++)
+            {
+                if (this.absisse == endnode.absisse)
+                {
+                    for (double j = endnode.ordonnee - 3; i < endnode.ordonnee + 3; j++)
+                    {
+                        if (this.ordonnee == endnode.ordonnee)
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            
+            return false;
+            /*Rectangle rect2 = new Rectangle(new Point((int)endnode.absisse, (int)endnode.ordonnee), new Size(new Point(3, 3)));
+            //Rectangle rect2 = new Rectangle(new Point((int)endnode.absisse, (int)endnode.ordonnee), new Size(new Point(1, 1)));
             if (rect2.Contains(new Point((int)this.absisse, (int)this.ordonnee)))
             {
                 return true;
             }
-            return false;
+            return false;*/
         }
 
         public override List<GenericNode> GetListSucc()
@@ -127,14 +143,14 @@ namespace ProjetTest
             //(x + 1, y - 1), (x + 1, y) et(x + 1, y + 1).
             double x = this.absisse;
             double y = this.ordonnee;
-            Noeud voisin1 = new Noeud(x-10,y-10);
-            Noeud voisin2 = new Noeud(x - 10, y);
-            Noeud voisin3 = new Noeud(x - 10, y + 10);
-            Noeud voisin4 = new Noeud(x , y - 10);
-            Noeud voisin5 = new Noeud(x , y + 10);
-            Noeud voisin6 = new Noeud(x + 10, y - 10);
-            Noeud voisin7 = new Noeud(x + 10, y);
-            Noeud voisin8 = new Noeud(x + 10, y + 10);
+            Noeud voisin1 = new Noeud(x-3,y-3);
+            Noeud voisin2 = new Noeud(x - 3, y);
+            Noeud voisin3 = new Noeud(x - 3, y + 3);
+            Noeud voisin4 = new Noeud(x , y - 3);
+            Noeud voisin5 = new Noeud(x , y + 3);
+            Noeud voisin6 = new Noeud(x + 3, y - 3);
+            Noeud voisin7 = new Noeud(x + 3, y);
+            Noeud voisin8 = new Noeud(x + 3, y + 3);
             List <GenericNode> ListeNoeud = new List<GenericNode>{voisin1,voisin2, voisin3,voisin4,voisin5,voisin6,voisin7,voisin8 };
            
         
@@ -145,7 +161,7 @@ namespace ProjetTest
             //calcul de l'heuristique
             return 0;
         }
-       /* public override List<GenericNode> GetListMeilleursSucc(GenericNode Nf)
+        public override List<GenericNode> GetListMeilleursSucc(GenericNode Nf)
         {
             List<GenericNode> ListeNoeud = GetListSucc();
             List<GenericNode> MeilleursVoisins = new List<GenericNode>();

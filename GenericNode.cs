@@ -9,6 +9,8 @@ namespace ProjetTest
     // pour résoudre un problème particulier en y ajoutant des infos liées au contexte du problème
     abstract public class GenericNode
     {
+        public static double TpsTotal { get; set; }
+
         protected double GCost;               //coût du chemin du noeud initial jusqu'à ce noeud
         protected double HCost;               //estimation heuristique du coût pour atteindre le noeud final
         protected double TotalCost;           //coût total (g+h)
@@ -24,10 +26,11 @@ namespace ProjetTest
             Enfants = new List<GenericNode>();
         }
 
-       
 
+        public double GetTpsTotal() { return TpsTotal; }
         public double GetGCost() { return GCost;}
         public void SetGCost(double g) { GCost = g;}
+        public void SetTpsTotal(double g) { TpsTotal = g; }
 
         public double Cout_Total
         {
@@ -69,7 +72,7 @@ namespace ProjetTest
         public abstract double GetArcCost(GenericNode N2, double vitesse, double direction);
         public abstract bool EndState(GenericNode N2);
         public abstract List<GenericNode> GetListSucc();
-        //public abstract List<GenericNode> GetListMeilleursSucc(GenericNode Nf);
+        public abstract List<GenericNode> GetListMeilleursSucc(GenericNode Nf);
         public abstract double CalculeHCost2();
         public abstract double CalculeHCost(GenericNode Nf, double vitesse, double direction); //test d'un calcul heuristique
         // On peut aussi penser à surcharger ToString() pour afficher correctement un état
