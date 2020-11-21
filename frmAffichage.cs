@@ -19,6 +19,9 @@ namespace ProjetIAv0
         private int _yf { get; set; }
         private double _speed { get; set; }
         private double _direction { get; set; }
+        private double _speed2 { get; set; }
+        private double _direction2 { get; set; }
+        private double _yModifVent { get; set; }
 
         public frmAffichage(int x0, int y0, int xf, int yf, double speed, double direction)
         {
@@ -49,25 +52,38 @@ namespace ProjetIAv0
             */
         }
 
+        public frmAffichage(int x0, int y0, int xf, int yf, double speed, double direction, double speed2, double direction2,double y)
+        {
+            InitializeComponent();
+            _x0 = x0;
+            _y0 = y0;
+            _xf = xf;
+            _yf = yf;
+            _speed = speed;
+            _direction = direction;
+            _speed2 = speed2;
+            _direction2 = direction2;
+            _yModifVent = y;
+        }
 
         //private Boolean clicked_once = false;
-       /* public void pictureBox1_Click(object sender, EventArgs e)
-        { // permet de récupérer le point d'où veut partir l'utilisateur et le point où il veut arriver
-            this.Cursor = new Cursor(Cursor.Current.Handle);
-            if (clicked_once == false)
-            {
-                clicked_once = true;
-                int x0 = Cursor.Position.X;
-                int y0 = Cursor.Position.Y;
+        /* public void pictureBox1_Click(object sender, EventArgs e)
+         { // permet de récupérer le point d'où veut partir l'utilisateur et le point où il veut arriver
+             this.Cursor = new Cursor(Cursor.Current.Handle);
+             if (clicked_once == false)
+             {
+                 clicked_once = true;
+                 int x0 = Cursor.Position.X;
+                 int y0 = Cursor.Position.Y;
 
-            }
-            else
-            {
-                clicked_once = false;
-                int x1 = Cursor.Position.X;
-                int y1 = Cursor.Position.Y;
-            }
-        }*/
+             }
+             else
+             {
+                 clicked_once = false;
+                 int x1 = Cursor.Position.X;
+                 int y1 = Cursor.Position.Y;
+             }
+         }*/
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         { // affichage d'une grille
@@ -126,8 +142,15 @@ namespace ProjetIAv0
             lblFin.Visible = true;
             SearchTree st = new SearchTree();
             List<GenericNode> chemin = new List<GenericNode>();
-            chemin = st.RechercheSolutionAEtoile(startnode, endnode,_speed,_direction);
-
+            if (_yModifVent > 0)
+            {
+                chemin = st.RechercheSolutionAEtoile2(startnode, endnode, _speed, _direction,_speed2,_direction2,_yModifVent);
+            }
+            else
+            {
+                chemin = st.RechercheSolutionAEtoile(startnode, endnode, _speed, _direction);
+            }
+            
             TreeView t = new TreeView();
             pboxArbre.Controls.Add(t);
             st.GetSearchTree(t);

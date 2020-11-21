@@ -29,6 +29,16 @@
         private void InitializeComponent()
         {
             this.gboxInfo = new System.Windows.Forms.GroupBox();
+            this.txtboxY = new System.Windows.Forms.TextBox();
+            this.lblYsup = new System.Windows.Forms.Label();
+            this.lblYinf = new System.Windows.Forms.Label();
+            this.txtboxDirection2 = new System.Windows.Forms.TextBox();
+            this.txtboxVitesse2 = new System.Windows.Forms.TextBox();
+            this.lblDirection2 = new System.Windows.Forms.Label();
+            this.lblVitesse2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.rdbtnNon = new System.Windows.Forms.RadioButton();
+            this.rdbtnOui = new System.Windows.Forms.RadioButton();
             this.btnValider = new System.Windows.Forms.Button();
             this.lblDirection1 = new System.Windows.Forms.Label();
             this.lblVitesse1 = new System.Windows.Forms.Label();
@@ -44,24 +54,14 @@
             this.lblAbsInit = new System.Windows.Forms.Label();
             this.lblCoordsFin = new System.Windows.Forms.Label();
             this.lblCoordsInit = new System.Windows.Forms.Label();
-            this.rdbtnOui = new System.Windows.Forms.RadioButton();
-            this.rdbtnNon = new System.Windows.Forms.RadioButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.lblVitesse2 = new System.Windows.Forms.Label();
-            this.lblDirection2 = new System.Windows.Forms.Label();
-            this.txtboxVitesse2 = new System.Windows.Forms.TextBox();
-            this.txtboxDirection2 = new System.Windows.Forms.TextBox();
-            this.lblYinf = new System.Windows.Forms.Label();
-            this.lblYsup = new System.Windows.Forms.Label();
-            this.txtboxYinf = new System.Windows.Forms.TextBox();
-            this.txtboxYsup = new System.Windows.Forms.TextBox();
+            this.lblValY = new System.Windows.Forms.Label();
             this.gboxInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // gboxInfo
             // 
-            this.gboxInfo.Controls.Add(this.txtboxYsup);
-            this.gboxInfo.Controls.Add(this.txtboxYinf);
+            this.gboxInfo.Controls.Add(this.lblValY);
+            this.gboxInfo.Controls.Add(this.txtboxY);
             this.gboxInfo.Controls.Add(this.lblYsup);
             this.gboxInfo.Controls.Add(this.lblYinf);
             this.gboxInfo.Controls.Add(this.txtboxDirection2);
@@ -93,6 +93,103 @@
             this.gboxInfo.TabStop = false;
             this.gboxInfo.Text = "Informations de voyage";
             // 
+            // txtboxY
+            // 
+            this.txtboxY.Location = new System.Drawing.Point(191, 195);
+            this.txtboxY.Name = "txtboxY";
+            this.txtboxY.Size = new System.Drawing.Size(52, 20);
+            this.txtboxY.TabIndex = 24;
+            this.txtboxY.Visible = false;
+            // 
+            // lblYsup
+            // 
+            this.lblYsup.AutoSize = true;
+            this.lblYsup.Location = new System.Drawing.Point(408, 243);
+            this.lblYsup.Name = "lblYsup";
+            this.lblYsup.Size = new System.Drawing.Size(129, 13);
+            this.lblYsup.TabIndex = 23;
+            this.lblYsup.Text = "Ordonnée supérieure à y :";
+            this.lblYsup.Visible = false;
+            // 
+            // lblYinf
+            // 
+            this.lblYinf.AutoSize = true;
+            this.lblYinf.Location = new System.Drawing.Point(25, 243);
+            this.lblYinf.Name = "lblYinf";
+            this.lblYinf.Size = new System.Drawing.Size(123, 13);
+            this.lblYinf.TabIndex = 22;
+            this.lblYinf.Text = "Ordonnée inférieure à y :";
+            this.lblYinf.Visible = false;
+            // 
+            // txtboxDirection2
+            // 
+            this.txtboxDirection2.Location = new System.Drawing.Point(556, 303);
+            this.txtboxDirection2.Name = "txtboxDirection2";
+            this.txtboxDirection2.Size = new System.Drawing.Size(100, 20);
+            this.txtboxDirection2.TabIndex = 21;
+            this.txtboxDirection2.Visible = false;
+            // 
+            // txtboxVitesse2
+            // 
+            this.txtboxVitesse2.Location = new System.Drawing.Point(556, 268);
+            this.txtboxVitesse2.Name = "txtboxVitesse2";
+            this.txtboxVitesse2.Size = new System.Drawing.Size(100, 20);
+            this.txtboxVitesse2.TabIndex = 20;
+            this.txtboxVitesse2.Visible = false;
+            // 
+            // lblDirection2
+            // 
+            this.lblDirection2.AutoSize = true;
+            this.lblDirection2.Location = new System.Drawing.Point(408, 306);
+            this.lblDirection2.Name = "lblDirection2";
+            this.lblDirection2.Size = new System.Drawing.Size(116, 13);
+            this.lblDirection2.TabIndex = 19;
+            this.lblDirection2.Text = "Direction du vent en ° :";
+            this.lblDirection2.Visible = false;
+            // 
+            // lblVitesse2
+            // 
+            this.lblVitesse2.AutoSize = true;
+            this.lblVitesse2.Location = new System.Drawing.Point(408, 271);
+            this.lblVitesse2.Name = "lblVitesse2";
+            this.lblVitesse2.Size = new System.Drawing.Size(129, 13);
+            this.lblVitesse2.TabIndex = 18;
+            this.lblVitesse2.Text = "Vitesse du vent en km/h :";
+            this.lblVitesse2.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(25, 158);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(132, 13);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Influence de y sur le vent :";
+            // 
+            // rdbtnNon
+            // 
+            this.rdbtnNon.AutoSize = true;
+            this.rdbtnNon.Location = new System.Drawing.Point(312, 156);
+            this.rdbtnNon.Name = "rdbtnNon";
+            this.rdbtnNon.Size = new System.Drawing.Size(45, 17);
+            this.rdbtnNon.TabIndex = 16;
+            this.rdbtnNon.TabStop = true;
+            this.rdbtnNon.Text = "Non";
+            this.rdbtnNon.UseVisualStyleBackColor = true;
+            this.rdbtnNon.CheckedChanged += new System.EventHandler(this.rdbtnNon_CheckedChanged);
+            // 
+            // rdbtnOui
+            // 
+            this.rdbtnOui.AutoSize = true;
+            this.rdbtnOui.Location = new System.Drawing.Point(205, 156);
+            this.rdbtnOui.Name = "rdbtnOui";
+            this.rdbtnOui.Size = new System.Drawing.Size(41, 17);
+            this.rdbtnOui.TabIndex = 15;
+            this.rdbtnOui.TabStop = true;
+            this.rdbtnOui.Text = "Oui";
+            this.rdbtnOui.UseVisualStyleBackColor = true;
+            this.rdbtnOui.CheckedChanged += new System.EventHandler(this.rdbtnOui_CheckedChanged);
+            // 
             // btnValider
             // 
             this.btnValider.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -107,7 +204,7 @@
             // lblDirection1
             // 
             this.lblDirection1.AutoSize = true;
-            this.lblDirection1.Location = new System.Drawing.Point(27, 306);
+            this.lblDirection1.Location = new System.Drawing.Point(25, 306);
             this.lblDirection1.Name = "lblDirection1";
             this.lblDirection1.Size = new System.Drawing.Size(116, 13);
             this.lblDirection1.TabIndex = 13;
@@ -117,7 +214,7 @@
             // lblVitesse1
             // 
             this.lblVitesse1.AutoSize = true;
-            this.lblVitesse1.Location = new System.Drawing.Point(27, 271);
+            this.lblVitesse1.Location = new System.Drawing.Point(25, 271);
             this.lblVitesse1.Name = "lblVitesse1";
             this.lblVitesse1.Size = new System.Drawing.Size(129, 13);
             this.lblVitesse1.TabIndex = 12;
@@ -222,108 +319,15 @@
             this.lblCoordsInit.TabIndex = 0;
             this.lblCoordsInit.Text = "Coordonnées de départ";
             // 
-            // rdbtnOui
+            // lblValY
             // 
-            this.rdbtnOui.AutoSize = true;
-            this.rdbtnOui.Location = new System.Drawing.Point(205, 156);
-            this.rdbtnOui.Name = "rdbtnOui";
-            this.rdbtnOui.Size = new System.Drawing.Size(41, 17);
-            this.rdbtnOui.TabIndex = 15;
-            this.rdbtnOui.TabStop = true;
-            this.rdbtnOui.Text = "Oui";
-            this.rdbtnOui.UseVisualStyleBackColor = true;
-            // 
-            // rdbtnNon
-            // 
-            this.rdbtnNon.AutoSize = true;
-            this.rdbtnNon.Location = new System.Drawing.Point(312, 156);
-            this.rdbtnNon.Name = "rdbtnNon";
-            this.rdbtnNon.Size = new System.Drawing.Size(45, 17);
-            this.rdbtnNon.TabIndex = 16;
-            this.rdbtnNon.TabStop = true;
-            this.rdbtnNon.Text = "Non";
-            this.rdbtnNon.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(25, 158);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(121, 13);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Influence du vent sur y :";
-            // 
-            // lblVitesse2
-            // 
-            this.lblVitesse2.AutoSize = true;
-            this.lblVitesse2.Location = new System.Drawing.Point(408, 271);
-            this.lblVitesse2.Name = "lblVitesse2";
-            this.lblVitesse2.Size = new System.Drawing.Size(129, 13);
-            this.lblVitesse2.TabIndex = 18;
-            this.lblVitesse2.Text = "Vitesse du vent en km/h :";
-            this.lblVitesse2.Visible = false;
-            // 
-            // lblDirection2
-            // 
-            this.lblDirection2.AutoSize = true;
-            this.lblDirection2.Location = new System.Drawing.Point(408, 306);
-            this.lblDirection2.Name = "lblDirection2";
-            this.lblDirection2.Size = new System.Drawing.Size(116, 13);
-            this.lblDirection2.TabIndex = 19;
-            this.lblDirection2.Text = "Direction du vent en ° :";
-            this.lblDirection2.Visible = false;
-            // 
-            // txtboxVitesse2
-            // 
-            this.txtboxVitesse2.Location = new System.Drawing.Point(556, 268);
-            this.txtboxVitesse2.Name = "txtboxVitesse2";
-            this.txtboxVitesse2.Size = new System.Drawing.Size(100, 20);
-            this.txtboxVitesse2.TabIndex = 20;
-            this.txtboxVitesse2.Visible = false;
-            // 
-            // txtboxDirection2
-            // 
-            this.txtboxDirection2.Location = new System.Drawing.Point(556, 303);
-            this.txtboxDirection2.Name = "txtboxDirection2";
-            this.txtboxDirection2.Size = new System.Drawing.Size(100, 20);
-            this.txtboxDirection2.TabIndex = 21;
-            this.txtboxDirection2.Visible = false;
-            // 
-            // lblYinf
-            // 
-            this.lblYinf.AutoSize = true;
-            this.lblYinf.Location = new System.Drawing.Point(27, 230);
-            this.lblYinf.Name = "lblYinf";
-            this.lblYinf.Size = new System.Drawing.Size(92, 13);
-            this.lblYinf.TabIndex = 22;
-            this.lblYinf.Text = "Pour y inférieur à :";
-            this.lblYinf.Visible = false;
-            // 
-            // lblYsup
-            // 
-            this.lblYsup.AutoSize = true;
-            this.lblYsup.Location = new System.Drawing.Point(408, 230);
-            this.lblYsup.Name = "lblYsup";
-            this.lblYsup.Size = new System.Drawing.Size(98, 13);
-            this.lblYsup.TabIndex = 23;
-            this.lblYsup.Text = "Pour y supérieur à :";
-            this.lblYsup.Visible = false;
-            // 
-            // txtboxYinf
-            // 
-            this.txtboxYinf.Location = new System.Drawing.Point(125, 227);
-            this.txtboxYinf.Name = "txtboxYinf";
-            this.txtboxYinf.Size = new System.Drawing.Size(52, 20);
-            this.txtboxYinf.TabIndex = 24;
-            this.txtboxYinf.Visible = false;
-            // 
-            // txtboxYsup
-            // 
-            this.txtboxYsup.Location = new System.Drawing.Point(512, 227);
-            this.txtboxYsup.Name = "txtboxYsup";
-            this.txtboxYsup.Size = new System.Drawing.Size(52, 20);
-            this.txtboxYsup.TabIndex = 25;
-            this.txtboxYsup.Visible = false;
+            this.lblValY.AutoSize = true;
+            this.lblValY.Location = new System.Drawing.Point(25, 198);
+            this.lblValY.Name = "lblValY";
+            this.lblValY.Size = new System.Drawing.Size(158, 13);
+            this.lblValY.TabIndex = 26;
+            this.lblValY.Text = "Valeur du y où change le vent : ";
+            this.lblValY.Visible = false;
             // 
             // frmAccueil
             // 
@@ -364,10 +368,10 @@
         private System.Windows.Forms.RadioButton rdbtnNon;
         private System.Windows.Forms.RadioButton rdbtnOui;
         private System.Windows.Forms.TextBox txtboxVitesse2;
-        private System.Windows.Forms.TextBox txtboxYsup;
-        private System.Windows.Forms.TextBox txtboxYinf;
+        private System.Windows.Forms.TextBox txtboxY;
         private System.Windows.Forms.Label lblYsup;
         private System.Windows.Forms.Label lblYinf;
         private System.Windows.Forms.TextBox txtboxDirection2;
+        private System.Windows.Forms.Label lblValY;
     }
 }
