@@ -33,7 +33,6 @@ C:\Users\flothaire\Desktop\ProjetIA\obj\Debug\ProjetIAv0.pdb
 C:\Users\flothaire\Desktop\ProjetIA\bin\Debug\ProjetIAv0.exe
 C:\Users\flothaire\Desktop\ProjetIA\bin\Debug\ProjetIAv0.pdb
 C:\Users\flothaire\Desktop\ProjetIA\obj\Debug\ProjetIAv0.csprojResolveAssemblyReference.cache
-C:\Users\flothaire\Desktop\ProjetIA\obj\Debug\ProjetIAv0.Form1.resources
 C:\Users\flothaire\Desktop\ProjetIA\obj\Debug\ProjetIAv0.Properties.Resources.resources
 C:\Users\flothaire\Desktop\ProjetIA\obj\Debug\ProjetIAv0.csproj.GenerateResource.Cache
 C:\Users\Agathe Sauvage\Documents\test git\ProjetIA\bin\Debug\ProjetIAv0.exe.config
@@ -50,3 +49,5 @@ C:\Users\Mariam\Documents\GitHub\ProjetIA\obj\Debug\ProjetIAv0.exe
 C:\Users\Mariam\Documents\GitHub\ProjetIA\obj\Debug\ProjetIAv0.pdb
 C:\Users\Mariam\Documents\GitHub\ProjetIA\obj\Debug\ProjetIAv0.frmAccueil.resources
 C:\Users\Mariam\Documents\GitHub\ProjetIA\obj\Debug\ProjetIAv0.frmAffichage.resources
+C:\Users\flothaire\Desktop\ProjetIA\obj\Debug\ProjetIAv0.frmAccueil.resources
+C:\Users\flothaire\Desktop\ProjetIA\obj\Debug\ProjetIAv0.frmAffichage.resources

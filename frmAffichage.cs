@@ -121,9 +121,9 @@ namespace ProjetIAv0
 
             Pen pen = new Pen(Color.Red);
             Pen penvert = new Pen(Color.Green);
-            Rectangle rect = new Rectangle(new Point(_x0, _y0), new Size(new Point(3, 3)));
+            Rectangle rect = new Rectangle(new Point(_x0, -(_y0 - pictureBox1.Height)), new Size(new Point(3, 3)));
             e.Graphics.DrawEllipse(pen, rect);
-            Rectangle rectf = new Rectangle(new Point(_xf, _yf), new Size(new Point(3, 3)));
+            Rectangle rectf = new Rectangle(new Point(_xf, -(_yf - pictureBox1.Height)), new Size(new Point(3, 3)));
             e.Graphics.DrawEllipse(penvert, rectf);
             start(e.Graphics);
 
@@ -159,8 +159,8 @@ namespace ProjetIAv0
             double temps = 0;
             foreach (Noeud n in chemin)
             {
-                temps += n.GetGCost();
-                g.DrawLine(new Pen(Color.Pink), new Point((int)n0.absisse, (int)n0.ordonnee), new Point((int)n.absisse, (int)n.ordonnee));
+                temps = n.GetGCost();
+                g.DrawLine(new Pen(Color.Pink), new Point((int)n0.absisse, -((int)n0.ordonnee - pictureBox1.Height)), new Point((int)n.absisse, -((int)n.ordonnee - pictureBox1.Height)));
                 n0 = n;
             }
             txtboxNoeud.Text = Convert.ToString(chemin.Count);
