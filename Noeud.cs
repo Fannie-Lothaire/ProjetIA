@@ -112,19 +112,7 @@ namespace ProjetTest
         }
         public override bool EndState(GenericNode endnode)
         {
-            for(double i= endnode.absisse-1;i< endnode.absisse + 1; i++)
-            {
-                if (this.absisse == endnode.absisse)
-                {
-                    for (double j = endnode.ordonnee - 1; i < endnode.ordonnee + 1; j++)
-                    {
-                        if (this.ordonnee == endnode.ordonnee)
-                        {
-                            return true;
-                        }
-                    }
-                }
-            }
+            if(this.absisse==endnode.absisse && this.ordonnee == endnode.ordonnee) { return true; }
             
             return false;
             /*Rectangle rect2 = new Rectangle(new Point((int)endnode.absisse, (int)endnode.ordonnee), new Size(new Point(3, 3)));
@@ -296,17 +284,19 @@ namespace ProjetTest
             //on calcul la distance à vol d'oiseau 
             double distance = Math.Sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
 
-            //on calcul la vitesse max du bateau
-            double boatdirection = Math.Atan2(y2 - y1, x2 - x1) * 180 / Math.PI; // On ramène entre 0 et 360
-            if (boatdirection < 0) boatdirection = boatdirection + 360;
-            double alpha = Math.Abs(boatdirection - direction);
+            //on calcule la vitesse max du bateau
 
-            double boatspeed = (0.6 + 0.3 * alpha / 45) * vitesse;
-            double boatspeed2 = (0.9 - 0.2 * (alpha - 45) / 45) * vitesse;
-            double boatspeed3 = 0.7 * (1 - (alpha - 90) / 60) * vitesse;
-            double vitbateau = Math.Max(boatspeed, boatspeed2);
-            vitbateau = Math.Max(vitbateau, boatspeed3);
+            /* double boatdirection = Math.Atan2(y2 - y1, x2 - x1) * 180 / Math.PI; // On ramène entre 0 et 360
+             if (boatdirection < 0) boatdirection = boatdirection + 360;
+             double alpha = Math.Abs(boatdirection - direction);
 
+             double boatspeed = (0.6 + 0.3 * alpha / 45) * vitesse;
+             double boatspeed2 = (0.9 - 0.2 * (alpha - 45) / 45) * vitesse;
+             double boatspeed3 = 0.7 * (1 - (alpha - 90) / 60) * vitesse;
+             double vitbateau = Math.Max(boatspeed, boatspeed2);
+             vitbateau = Math.Max(vitbateau, boatspeed3);*/
+
+            double vitbateau = 0.9 * 50;
             // estimation du temps de navigation entre p1 et p2
             double HCostval =distance / vitbateau;
 
