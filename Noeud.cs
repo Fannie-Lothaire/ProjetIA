@@ -31,6 +31,7 @@ namespace ProjetTest
             if (distance > 10) return 1000000;
             //double windspeed = get_wind_speed((x1 + x2) / 2.0, (y1 + y2) / 2.0);
             //double winddirection = get_wind_direction((x1 + x2) / 2.0, (y1 + y2) / 2.0);
+
             double windspeed = get_wind_speed(vitesse);
             double winddirection = get_wind_direction(direction);
 
@@ -62,7 +63,7 @@ namespace ProjetTest
             return (distance / boatspeed);
         }
 
-        public char cas { get; set; } // à modifier en ‘b’ ou ‘c’ selon le choix de l’utilisateur
+        //public char cas { get; set; } // à modifier en ‘b’ ou ‘c’ selon le choix de l’utilisateur
 
         //modification des paramètres et des fonctions pour pouvoir faire avec n'importe quel paramètre
         /*public double get_wind_speed(double x, double y)
@@ -111,11 +112,11 @@ namespace ProjetTest
         }
         public override bool EndState(GenericNode endnode)
         {
-            for(double i= endnode.absisse-3;i< endnode.absisse + 3; i++)
+            for(double i= endnode.absisse-1;i< endnode.absisse + 1; i++)
             {
                 if (this.absisse == endnode.absisse)
                 {
-                    for (double j = endnode.ordonnee - 3; i < endnode.ordonnee + 3; j++)
+                    for (double j = endnode.ordonnee - 1; i < endnode.ordonnee + 1; j++)
                     {
                         if (this.ordonnee == endnode.ordonnee)
                         {
@@ -143,14 +144,14 @@ namespace ProjetTest
             //(x + 1, y - 1), (x + 1, y) et(x + 1, y + 1).
             double x = this.absisse;
             double y = this.ordonnee;
-            Noeud voisin1 = new Noeud(x-3,y-3);
-            Noeud voisin2 = new Noeud(x - 3, y);
-            Noeud voisin3 = new Noeud(x - 3, y + 3);
-            Noeud voisin4 = new Noeud(x , y - 3);
-            Noeud voisin5 = new Noeud(x , y + 3);
-            Noeud voisin6 = new Noeud(x + 3, y - 3);
-            Noeud voisin7 = new Noeud(x + 3, y);
-            Noeud voisin8 = new Noeud(x + 3, y + 3);
+            Noeud voisin1 = new Noeud(x-5,y-5);
+            Noeud voisin2 = new Noeud(x -5, y);
+            Noeud voisin3 = new Noeud(x - 5, y + 5);
+            Noeud voisin4 = new Noeud(x , y - 5);
+            Noeud voisin5 = new Noeud(x , y + 5);
+            Noeud voisin6 = new Noeud(x + 5, y - 5);
+            Noeud voisin7 = new Noeud(x + 5, y);
+            Noeud voisin8 = new Noeud(x + 5, y + 5);
             List <GenericNode> ListeNoeud = new List<GenericNode>{voisin1,voisin2, voisin3,voisin4,voisin5,voisin6,voisin7,voisin8 };
            
         

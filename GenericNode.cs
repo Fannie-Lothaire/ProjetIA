@@ -9,7 +9,6 @@ namespace ProjetTest
     // pour résoudre un problème particulier en y ajoutant des infos liées au contexte du problème
     abstract public class GenericNode
     {
-        public static double TpsTotal { get; set; }
 
         protected double GCost;               //coût du chemin du noeud initial jusqu'à ce noeud
         protected double HCost;               //estimation heuristique du coût pour atteindre le noeud final
@@ -27,11 +26,8 @@ namespace ProjetTest
         }
 
 
-        public double GetTpsTotal() { return TpsTotal; }
         public double GetGCost() { return GCost;}
         public void SetGCost(double g) { GCost = g;}
-        public void SetTpsTotal(double g) { TpsTotal = g; }
-
         public double Cout_Total
         {
             get { return TotalCost; }

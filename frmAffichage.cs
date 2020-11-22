@@ -163,8 +163,10 @@ namespace ProjetIAv0
                 g.DrawLine(new Pen(Color.Pink), new Point((int)n0.absisse, (int)n0.ordonnee), new Point((int)n.absisse, (int)n.ordonnee));
                 n0 = n;
             }
-            
-            txtboxTemps.Text = Convert.ToString(Math.Round(temps));
+            txtboxNoeud.Text = Convert.ToString(chemin.Count);
+            int heures = (int)(temps * 60) / 60;
+            double minutes = temps * 60 - heures * 60;
+            txtboxTemps.Text = Convert.ToString(heures)+ "h "+ Convert.ToString(Math.Round(minutes))+"min";
             //MessageBox.Show("Temps le plus petit pour aller du point (" + _x0 + "," + _y0 + ") au point (" + _xf + "," + _yf + ")" + " est de : \n" + temps.ToString());
 
         }

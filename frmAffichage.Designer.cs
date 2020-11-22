@@ -35,6 +35,8 @@
             this.pboxArbre = new System.Windows.Forms.PictureBox();
             this.lblInit = new System.Windows.Forms.Label();
             this.lblFin = new System.Windows.Forms.Label();
+            this.lblNoeud = new System.Windows.Forms.Label();
+            this.txtboxNoeud = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxArbre)).BeginInit();
             this.SuspendLayout();
@@ -55,25 +57,25 @@
             // lblTemps
             // 
             this.lblTemps.AutoSize = true;
-            this.lblTemps.Location = new System.Drawing.Point(19, 101);
+            this.lblTemps.Location = new System.Drawing.Point(19, 85);
             this.lblTemps.Name = "lblTemps";
-            this.lblTemps.Size = new System.Drawing.Size(128, 13);
+            this.lblTemps.Size = new System.Drawing.Size(104, 13);
             this.lblTemps.TabIndex = 1;
-            this.lblTemps.Text = "Temps de parcours en h :";
+            this.lblTemps.Text = "Temps de parcours :";
             // 
             // txtboxTemps
             // 
             this.txtboxTemps.Enabled = false;
-            this.txtboxTemps.Location = new System.Drawing.Point(22, 135);
+            this.txtboxTemps.Location = new System.Drawing.Point(22, 113);
             this.txtboxTemps.Name = "txtboxTemps";
             this.txtboxTemps.Size = new System.Drawing.Size(100, 20);
             this.txtboxTemps.TabIndex = 2;
             // 
             // pboxArbre
             // 
-            this.pboxArbre.Location = new System.Drawing.Point(22, 184);
+            this.pboxArbre.Location = new System.Drawing.Point(22, 226);
             this.pboxArbre.Name = "pboxArbre";
-            this.pboxArbre.Size = new System.Drawing.Size(137, 112);
+            this.pboxArbre.Size = new System.Drawing.Size(110, 91);
             this.pboxArbre.TabIndex = 3;
             this.pboxArbre.TabStop = false;
             // 
@@ -82,7 +84,7 @@
             this.lblInit.AutoSize = true;
             this.lblInit.BackColor = System.Drawing.Color.Transparent;
             this.lblInit.ForeColor = System.Drawing.Color.Red;
-            this.lblInit.Location = new System.Drawing.Point(19, 42);
+            this.lblInit.Location = new System.Drawing.Point(19, 30);
             this.lblInit.Name = "lblInit";
             this.lblInit.Size = new System.Drawing.Size(64, 13);
             this.lblInit.TabIndex = 4;
@@ -94,12 +96,29 @@
             this.lblFin.AutoSize = true;
             this.lblFin.BackColor = System.Drawing.Color.Transparent;
             this.lblFin.ForeColor = System.Drawing.Color.Green;
-            this.lblFin.Location = new System.Drawing.Point(19, 72);
+            this.lblFin.Location = new System.Drawing.Point(19, 54);
             this.lblFin.Name = "lblFin";
             this.lblFin.Size = new System.Drawing.Size(66, 13);
             this.lblFin.TabIndex = 5;
             this.lblFin.Text = "Point arrivée";
             this.lblFin.Visible = false;
+            // 
+            // lblNoeud
+            // 
+            this.lblNoeud.AutoSize = true;
+            this.lblNoeud.Location = new System.Drawing.Point(19, 154);
+            this.lblNoeud.Name = "lblNoeud";
+            this.lblNoeud.Size = new System.Drawing.Size(103, 13);
+            this.lblNoeud.TabIndex = 6;
+            this.lblNoeud.Text = "Nombre de noeuds :";
+            // 
+            // txtboxNoeud
+            // 
+            this.txtboxNoeud.Enabled = false;
+            this.txtboxNoeud.Location = new System.Drawing.Point(22, 179);
+            this.txtboxNoeud.Name = "txtboxNoeud";
+            this.txtboxNoeud.Size = new System.Drawing.Size(100, 20);
+            this.txtboxNoeud.TabIndex = 7;
             // 
             // frmAffichage
             // 
@@ -108,6 +127,8 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(538, 349);
+            this.Controls.Add(this.txtboxNoeud);
+            this.Controls.Add(this.lblNoeud);
             this.Controls.Add(this.lblFin);
             this.Controls.Add(this.lblInit);
             this.Controls.Add(this.pboxArbre);
@@ -131,6 +152,8 @@
         private System.Windows.Forms.PictureBox pboxArbre;
         private System.Windows.Forms.Label lblInit;
         private System.Windows.Forms.Label lblFin;
+        private System.Windows.Forms.Label lblNoeud;
+        private System.Windows.Forms.TextBox txtboxNoeud;
     }
 }
 
