@@ -19,7 +19,7 @@ namespace ProjetIAv0
 
         private void btnValider_Click(object sender, EventArgs e)
         {
-            if (rdbtnNon.Visible == true)
+            if (rdbtnNon.Checked)
             {
                 if (txtboxAbsFin.Text != "" && txtboxAbsInit.Text != "" && txtboxDirection1.Text != "" && txtboxOrdInit.Text != "" && txtboxOrdFin.Text != "" && txtboxVitesse1.Text != "")
                 {

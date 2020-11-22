@@ -335,7 +335,7 @@ namespace ProjetTest
             else
                 return 1000000;
             // estimation du temps de navigation entre p1 et p2
-            return (distance / boatspeed);
+            return (distance / boatspeed) + distance + (100/boatspeed);
         }
 
         public override string ToString()

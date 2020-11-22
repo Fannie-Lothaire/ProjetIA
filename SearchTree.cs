@@ -100,7 +100,7 @@ namespace ProjetTest
             L_Fermes = new List<GenericNode>();
             // Le noeud passé en paramètre est supposé être le noeud initial
             GenericNode N = N0;
-            L_Ouverts.Add(N0);
+            L_Ouverts.Add(N);
 
             // tant que le noeud n'est pas terminal et que ouverts n'est pas vide
             while (L_Ouverts.Count != 0 && N.EndState(endnode) == false)
@@ -163,6 +163,10 @@ namespace ProjetTest
 
         private void MAJSuccesseurs(GenericNode N, GenericNode Nf, double vitesse, double direction)
         {
+            if (N.absisse == 150 && N.ordonnee == 150)
+            {
+                
+            }
             // On fait appel à GetListSucc, méthode abstraite qu'on doit réécrire pour chaque
             // problème. Elle doit retourner la liste complète des noeuds successeurs de N.
 
