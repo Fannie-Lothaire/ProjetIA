@@ -55,9 +55,9 @@ namespace ProjetTest
             HCost = CalculeHCost2();
             TotalCost = GCost + HCost;
         }
-        public void calculCoutTotal(GenericNode Nf, double vitesse, double direction)
+        public void calculCoutTotal(GenericNode Nf, double vitesse, double direction,GenericNode Nprecedent)
         {
-            HCost = CalculeHCost(Nf,vitesse,direction);
+            HCost = CalculeHCost(Nf,vitesse,direction,Nprecedent);
             TotalCost = GCost + HCost;
         }
         //quelle va être la différence ?
@@ -70,7 +70,7 @@ namespace ProjetTest
         public abstract List<GenericNode> GetListSucc();
         public abstract List<GenericNode> GetListMeilleursSucc(GenericNode Nf);
         public abstract double CalculeHCost2();
-        public abstract double CalculeHCost(GenericNode Nf, double vitesse, double direction); //test d'un calcul heuristique
+        public abstract double CalculeHCost(GenericNode Nf, double vitesse, double direction,GenericNode Nprecedent); //test d'un calcul heuristique
         // On peut aussi penser à surcharger ToString() pour afficher correctement un état
         // c'est utile pour l'affichage du treenode
     }

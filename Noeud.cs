@@ -62,26 +62,7 @@ namespace ProjetTest
             // estimation du temps de navigation entre p1 et p2
             return (distance / boatspeed);
         }
-
-        //public char cas { get; set; } // à modifier en ‘b’ ou ‘c’ selon le choix de l’utilisateur
-
-        //modification des paramètres et des fonctions pour pouvoir faire avec n'importe quel paramètre
-        /*public double get_wind_speed(double x, double y)
-        {
-            if (cas == 'a') return 50;
-            else if (cas == 'b') if (y > 150)
-                    return 50;
-                else return 20;
-            else if (y > 150) return 50; else return 20;
-        }
-        public double get_wind_direction(double x, double y)
-        {
-            if (cas == 'a') return 30;
-            else if (cas == 'b') if (y > 150)
-                    return 180;
-                else return 90;
-            else if (y > 150) return 170; else return 65;
-        }*/
+       
 
         public double get_wind_speed(double vitesse)
         {
@@ -98,7 +79,7 @@ namespace ProjetTest
 
         public override bool IsEqual(GenericNode N2)
         {
-            if (this == N2)
+            if (this.absisse == N2.absisse && this.ordonnee==N2.ordonnee)
             {
                 return true;
             }
@@ -114,13 +95,6 @@ namespace ProjetTest
             if(this.absisse==endnode.absisse && this.ordonnee == endnode.ordonnee) { return true; }
             
             return false;
-            /*Rectangle rect2 = new Rectangle(new Point((int)endnode.absisse, (int)endnode.ordonnee), new Size(new Point(3, 3)));
-            //Rectangle rect2 = new Rectangle(new Point((int)endnode.absisse, (int)endnode.ordonnee), new Size(new Point(1, 1)));
-            if (rect2.Contains(new Point((int)this.absisse, (int)this.ordonnee)))
-            {
-                return true;
-            }
-            return false;*/
         }
 
         public override List<GenericNode> GetListSucc()
@@ -131,25 +105,26 @@ namespace ProjetTest
             //(x + 1, y - 1), (x + 1, y) et(x + 1, y + 1).
             double x = this.absisse;
             double y = this.ordonnee;
-            Noeud voisin1 = new Noeud(x-5,y-5);
-            Noeud voisin2 = new Noeud(x -5, y);
-            Noeud voisin3 = new Noeud(x - 5, y + 5);
-            Noeud voisin4 = new Noeud(x , y - 5);
-            Noeud voisin5 = new Noeud(x , y + 5);
-            Noeud voisin6 = new Noeud(x + 5, y - 5);
-            Noeud voisin7 = new Noeud(x + 5, y);
-            Noeud voisin8 = new Noeud(x + 5, y + 5);
-            Noeud voisin9 = new Noeud(x - 5, y - 10);
-            Noeud voisin10 = new Noeud(x - 10, y - 5);
-            Noeud voisin11 = new Noeud(x - 10, y + 5);
-            Noeud voisin12 = new Noeud(x - 5, y + 10);
-            Noeud voisin13 = new Noeud(x + 5, y + 10);
-            Noeud voisin14 = new Noeud(x + 10, y + 5);
-            Noeud voisin15 = new Noeud(x + 10, y - 5);
-            Noeud voisin16 = new Noeud(x + 5, y - 10);
-            //List <GenericNode> ListeNoeud = new List<GenericNode>{voisin1,voisin2, voisin3,voisin4,voisin5,voisin6,voisin7,voisin8};
+            
+                        Noeud voisin1 = new Noeud(x - 1, y - 1);
+                        Noeud voisin2 = new Noeud(x - 1, y);
+                        Noeud voisin3 = new Noeud(x - 1, y + 1);
+                        Noeud voisin4 = new Noeud(x, y - 1);
+                        Noeud voisin5 = new Noeud(x, y + 1);
+                        Noeud voisin6 = new Noeud(x + 1, y - 1);
+                        Noeud voisin7 = new Noeud(x + 1, y);
+                        Noeud voisin8 = new Noeud(x + 1, y + 1);
+                        Noeud voisin9 = new Noeud(x - 1, y - 2);
+                        Noeud voisin10 = new Noeud(x - 2, y - 1);
+                        Noeud voisin11 = new Noeud(x - 2, y + 1);
+                        Noeud voisin12 = new Noeud(x - 2, y + 2);
+                        Noeud voisin13 = new Noeud(x + 1, y + 2);
+                        Noeud voisin14 = new Noeud(x + 2, y + 1);
+                        Noeud voisin15 = new Noeud(x + 2, y - 1);
+                        Noeud voisin16 = new Noeud(x + 1, y - 2);
+            
             List<GenericNode> ListeNoeud = new List<GenericNode> { voisin1, voisin2, voisin3, voisin4, voisin5, voisin6, voisin7, voisin8, voisin9, voisin10, voisin11, voisin12, voisin13, voisin14, voisin15, voisin16 };
-            //List<GenericNode> ListeNoeud = new List<GenericNode> { voisin9, voisin10, voisin11, voisin12, voisin13, voisin14, voisin15, voisin16 };
+     
 
 
             return ListeNoeud;
@@ -161,6 +136,7 @@ namespace ProjetTest
         }
         public override List<GenericNode> GetListMeilleursSucc(GenericNode Nf)
         {
+            //on utilisera cette fonction pour éviter de regarder tous les points possibles
             List<GenericNode> ListeNoeud = GetListSucc();
             List<GenericNode> MeilleursVoisins = new List<GenericNode>();
             if (Nf.absisse == this.absisse)
@@ -201,6 +177,9 @@ namespace ProjetTest
                         MeilleursVoisins.Add(ListeNoeud[6]);
                         MeilleursVoisins.Add(ListeNoeud[7]);
                         MeilleursVoisins.Add(ListeNoeud[4]);
+                        //nouveaux voisins
+                        MeilleursVoisins.Add(ListeNoeud[14]);
+                        MeilleursVoisins.Add(ListeNoeud[13]);
                     }
                     else
                     {
@@ -210,6 +189,9 @@ namespace ProjetTest
                             MeilleursVoisins.Add(ListeNoeud[6]);
                             MeilleursVoisins.Add(ListeNoeud[5]);
                             MeilleursVoisins.Add(ListeNoeud[3]);
+                            //nouveaux voisins
+                            MeilleursVoisins.Add(ListeNoeud[14]);
+                            MeilleursVoisins.Add(ListeNoeud[15]);
                         }
                         else
                         {
@@ -219,6 +201,9 @@ namespace ProjetTest
                                 MeilleursVoisins.Add(ListeNoeud[1]);
                                 MeilleursVoisins.Add(ListeNoeud[2]);
                                 MeilleursVoisins.Add(ListeNoeud[4]);
+                                //nouveaux voisins
+                                MeilleursVoisins.Add(ListeNoeud[10]);
+                                MeilleursVoisins.Add(ListeNoeud[11]);
                             }
                             else
                             {
@@ -226,6 +211,9 @@ namespace ProjetTest
                                 MeilleursVoisins.Add(ListeNoeud[1]);
                                 MeilleursVoisins.Add(ListeNoeud[0]);
                                 MeilleursVoisins.Add(ListeNoeud[3]);
+                                //nouveaux voisins
+                                MeilleursVoisins.Add(ListeNoeud[9]);
+                                MeilleursVoisins.Add(ListeNoeud[10]);
                             }
                         }
                     }
@@ -286,7 +274,7 @@ namespace ProjetTest
              return HCostval;
          }*/
 
-        public override double CalculeHCost(GenericNode Nf,double vitesse, double direction)
+        public override double CalculeHCost(GenericNode Nf,double vitesse, double direction, GenericNode Nprecedent)
         {
             double x1 = this.absisse; double y1 = this.ordonnee;double x2 = Nf.absisse;double y2 = Nf.ordonnee;
             ////heuristique ou on calcule l'heuristique du temps à vol d'oiseau entre le point étudier et le final
@@ -316,6 +304,7 @@ namespace ProjetTest
             double distance = Math.Sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
             //double windspeed = get_wind_speed((x1 + x2) / 2.0, (y1 + y2) / 2.0);
             //double winddirection = get_wind_direction((x1 + x2) / 2.0, (y1 + y2) / 2.0);
+           // if(Math.Sqrt((x1 - Nprecedent.absisse) * (x1 - Nprecedent.absisse) + (y1 - Nprecedent.ordonnee) * (y1 - Nprecedent.ordonnee)) >Math.Sqrt(20)) { return 1000000; }
 
             double windspeed = get_wind_speed(vitesse);
             double winddirection = get_wind_direction(direction);
@@ -330,22 +319,24 @@ namespace ProjetTest
             if (alpha <= 45)
             {
                 /* (0.6 + 0.3α / 45) v_v */
-                boatspeed = (0.6 + 0.3 * alpha / 45) * windspeed;
+                boatspeed = (0.6 + 0.3 * alpha / 45) * windspeed;      //max 45 pour 50 - 20 pour 18
             }
             else if (alpha <= 90)
             {
                 /*v_b=(0.9-0.2(α-45)/45) v_v */
-                boatspeed = (0.9 - 0.2 * (alpha - 45) / 45) * windspeed;
+                boatspeed = (0.9 - 0.2 * (alpha - 45) / 45) * windspeed;    ///45
             }
             else if (alpha < 150)
             {
                 /* v_b=0.7(1-(α-90)/60) v_v */
-                boatspeed = 0.7 * (1 - (alpha - 90) / 60) * windspeed;
+                boatspeed = 0.7 * (1 - (alpha - 90) / 60) * windspeed;   //35
             }
             else
                 return 1000000;
             // estimation du temps de navigation entre p1 et p2
-            return (distance / boatspeed) + distance + 100/boatspeed;
+            
+            return distance / boatspeed;
+           // return (distance / boatspeed) + distance + 100/boatspeed;
         }
 
         public override string ToString()

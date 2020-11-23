@@ -35,8 +35,11 @@
             this.pboxArbre = new System.Windows.Forms.PictureBox();
             this.lblInit = new System.Windows.Forms.Label();
             this.lblFin = new System.Windows.Forms.Label();
-            this.lblNoeud = new System.Windows.Forms.Label();
-            this.txtboxNoeud = new System.Windows.Forms.TextBox();
+            this.lblNoeudf = new System.Windows.Forms.Label();
+            this.txtboxNoeudf = new System.Windows.Forms.TextBox();
+            this.lblNoeudfo = new System.Windows.Forms.Label();
+            this.txtboxNoeudfo = new System.Windows.Forms.TextBox();
+            this.lblArbre = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxArbre)).BeginInit();
             this.SuspendLayout();
@@ -57,7 +60,7 @@
             // lblTemps
             // 
             this.lblTemps.AutoSize = true;
-            this.lblTemps.Location = new System.Drawing.Point(19, 85);
+            this.lblTemps.Location = new System.Drawing.Point(12, 68);
             this.lblTemps.Name = "lblTemps";
             this.lblTemps.Size = new System.Drawing.Size(104, 13);
             this.lblTemps.TabIndex = 1;
@@ -66,14 +69,14 @@
             // txtboxTemps
             // 
             this.txtboxTemps.Enabled = false;
-            this.txtboxTemps.Location = new System.Drawing.Point(22, 113);
+            this.txtboxTemps.Location = new System.Drawing.Point(12, 84);
             this.txtboxTemps.Name = "txtboxTemps";
             this.txtboxTemps.Size = new System.Drawing.Size(100, 20);
             this.txtboxTemps.TabIndex = 2;
             // 
             // pboxArbre
             // 
-            this.pboxArbre.Location = new System.Drawing.Point(22, 226);
+            this.pboxArbre.Location = new System.Drawing.Point(12, 239);
             this.pboxArbre.Name = "pboxArbre";
             this.pboxArbre.Size = new System.Drawing.Size(110, 91);
             this.pboxArbre.TabIndex = 3;
@@ -84,7 +87,7 @@
             this.lblInit.AutoSize = true;
             this.lblInit.BackColor = System.Drawing.Color.Transparent;
             this.lblInit.ForeColor = System.Drawing.Color.Red;
-            this.lblInit.Location = new System.Drawing.Point(19, 30);
+            this.lblInit.Location = new System.Drawing.Point(15, 20);
             this.lblInit.Name = "lblInit";
             this.lblInit.Size = new System.Drawing.Size(64, 13);
             this.lblInit.TabIndex = 4;
@@ -96,39 +99,67 @@
             this.lblFin.AutoSize = true;
             this.lblFin.BackColor = System.Drawing.Color.Transparent;
             this.lblFin.ForeColor = System.Drawing.Color.Green;
-            this.lblFin.Location = new System.Drawing.Point(19, 54);
+            this.lblFin.Location = new System.Drawing.Point(15, 43);
             this.lblFin.Name = "lblFin";
             this.lblFin.Size = new System.Drawing.Size(66, 13);
             this.lblFin.TabIndex = 5;
             this.lblFin.Text = "Point arrivée";
             this.lblFin.Visible = false;
             // 
-            // lblNoeud
+            // lblNoeudf
             // 
-            this.lblNoeud.AutoSize = true;
-            this.lblNoeud.Location = new System.Drawing.Point(19, 154);
-            this.lblNoeud.Name = "lblNoeud";
-            this.lblNoeud.Size = new System.Drawing.Size(103, 13);
-            this.lblNoeud.TabIndex = 6;
-            this.lblNoeud.Text = "Nombre de noeuds :";
+            this.lblNoeudf.AutoSize = true;
+            this.lblNoeudf.Location = new System.Drawing.Point(9, 121);
+            this.lblNoeudf.Name = "lblNoeudf";
+            this.lblNoeudf.Size = new System.Drawing.Size(143, 13);
+            this.lblNoeudf.TabIndex = 6;
+            this.lblNoeudf.Text = "Nombre de noeuds (fermés) :";
             // 
-            // txtboxNoeud
+            // txtboxNoeudf
             // 
-            this.txtboxNoeud.Enabled = false;
-            this.txtboxNoeud.Location = new System.Drawing.Point(22, 179);
-            this.txtboxNoeud.Name = "txtboxNoeud";
-            this.txtboxNoeud.Size = new System.Drawing.Size(100, 20);
-            this.txtboxNoeud.TabIndex = 7;
+            this.txtboxNoeudf.Enabled = false;
+            this.txtboxNoeudf.Location = new System.Drawing.Point(12, 137);
+            this.txtboxNoeudf.Name = "txtboxNoeudf";
+            this.txtboxNoeudf.Size = new System.Drawing.Size(100, 20);
+            this.txtboxNoeudf.TabIndex = 7;
+            // 
+            // lblNoeudfo
+            // 
+            this.lblNoeudfo.AutoSize = true;
+            this.lblNoeudfo.Location = new System.Drawing.Point(9, 176);
+            this.lblNoeudfo.Name = "lblNoeudfo";
+            this.lblNoeudfo.Size = new System.Drawing.Size(193, 13);
+            this.lblNoeudfo.TabIndex = 8;
+            this.lblNoeudfo.Text = "Nombre de noeuds (fermés et ouverts) :";
+            // 
+            // txtboxNoeudfo
+            // 
+            this.txtboxNoeudfo.Enabled = false;
+            this.txtboxNoeudfo.Location = new System.Drawing.Point(12, 192);
+            this.txtboxNoeudfo.Name = "txtboxNoeudfo";
+            this.txtboxNoeudfo.Size = new System.Drawing.Size(100, 20);
+            this.txtboxNoeudfo.TabIndex = 9;
+            // 
+            // lblArbre
+            // 
+            this.lblArbre.AutoSize = true;
+            this.lblArbre.Location = new System.Drawing.Point(15, 223);
+            this.lblArbre.Name = "lblArbre";
+            this.lblArbre.Size = new System.Drawing.Size(100, 13);
+            this.lblArbre.TabIndex = 10;
+            this.lblArbre.Text = "Arbre des chemins :";
             // 
             // frmAffichage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(538, 349);
-            this.Controls.Add(this.txtboxNoeud);
-            this.Controls.Add(this.lblNoeud);
+            this.Controls.Add(this.lblArbre);
+            this.Controls.Add(this.txtboxNoeudfo);
+            this.Controls.Add(this.lblNoeudfo);
+            this.Controls.Add(this.txtboxNoeudf);
+            this.Controls.Add(this.lblNoeudf);
             this.Controls.Add(this.lblFin);
             this.Controls.Add(this.lblInit);
             this.Controls.Add(this.pboxArbre);
@@ -136,7 +167,7 @@
             this.Controls.Add(this.lblTemps);
             this.Controls.Add(this.pictureBox1);
             this.Name = "frmAffichage";
-            this.Text = "Form1";
+            this.Text = "Affichage des résultats";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxArbre)).EndInit();
             this.ResumeLayout(false);
@@ -152,8 +183,11 @@
         private System.Windows.Forms.PictureBox pboxArbre;
         private System.Windows.Forms.Label lblInit;
         private System.Windows.Forms.Label lblFin;
-        private System.Windows.Forms.Label lblNoeud;
-        private System.Windows.Forms.TextBox txtboxNoeud;
+        private System.Windows.Forms.Label lblNoeudf;
+        private System.Windows.Forms.TextBox txtboxNoeudf;
+        private System.Windows.Forms.Label lblNoeudfo;
+        private System.Windows.Forms.TextBox txtboxNoeudfo;
+        private System.Windows.Forms.Label lblArbre;
     }
 }
 

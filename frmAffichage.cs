@@ -163,7 +163,9 @@ namespace ProjetIAv0
                 g.DrawLine(new Pen(Color.Pink), new Point((int)n0.absisse, -((int)n0.ordonnee - pictureBox1.Height)), new Point((int)n.absisse, -((int)n.ordonnee - pictureBox1.Height)));
                 n0 = n;
             }
-            txtboxNoeud.Text = Convert.ToString(chemin.Count);
+            txtboxNoeudf.Text = Convert.ToString(chemin.Count);
+            txtboxNoeudfo.Text = Convert.ToString(t.GetNodeCount(true));
+
             int heures = (int)(temps * 60) / 60;
             double minutes = temps * 60 - heures * 60;
             txtboxTemps.Text = Convert.ToString(heures)+ "h "+ Convert.ToString(Math.Round(minutes))+"min";
