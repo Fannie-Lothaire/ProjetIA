@@ -40,6 +40,7 @@ namespace ProjetTest
             return null;
         }
 
+        //recherche de A étoile avec le vent qui ne varie pas en fonction de y, c'est à dire pour un parcours de type 1
         public List<GenericNode> RechercheSolutionAEtoile(GenericNode N0, GenericNode endnode,double vitesse, double direction)
         {
             L_Ouverts = new List<GenericNode>();
@@ -92,7 +93,7 @@ namespace ProjetTest
             return _LN;
         }
 
-        //recherche de A étoile avec le vent qui varie en fonction de y
+        //recherche de A étoile avec le vent qui varie en fonction de y, c'est à dire pour un parcours de type 2
         public List<GenericNode> RechercheSolutionAEtoile2(GenericNode N0, GenericNode endnode, double vitesse1, double direction1, double vitesse2, double direction2, double y)
         {
             double vitesse = 0;
@@ -158,11 +159,6 @@ namespace ProjetTest
         }
 
 
-
-
-
-
-
         private void MAJSuccesseurs(GenericNode N, GenericNode Nf, double vitesse, double direction, GenericNode Nprecedent)
         {
             // On fait appel à GetListSucc, méthode abstraite qu'on doit réécrire pour chaque
@@ -182,7 +178,7 @@ namespace ProjetTest
                     {
                         // Il existe, donc on l'a déjà vu, N2 n'est qu'une copie de N2Bis
                         // Le nouveau chemin passant par N est-il meilleur ?
-                        if (N.GetGCost() + N.GetArcCost(N2,vitesse,direction) < N2bis.GetGCost()/* && Math.Sqrt((N2bis.absisse - Nprecedent.absisse) * (N2bis.absisse - Nprecedent.absisse) + (N2bis.ordonnee - Nprecedent.ordonnee) * (N2bis.ordonnee - Nprecedent.ordonnee)) <= Math.Sqrt(20)*/)
+                        if (N.GetGCost() + N.GetArcCost(N2,vitesse,direction) < N2bis.GetGCost())
                         {
                             // Mise à jour de N2bis
                             N2bis.SetGCost(N.GetGCost() + N.GetArcCost(N2, vitesse, direction));

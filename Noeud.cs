@@ -29,60 +29,28 @@ namespace ProjetTest
         {
             double distance = Math.Sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
             if (distance > 10) return 1000000;
-            //double windspeed = get_wind_speed((x1 + x2) / 2.0, (y1 + y2) / 2.0);
-            //double winddirection = get_wind_direction((x1 + x2) / 2.0, (y1 + y2) / 2.0);
-
-            double windspeed = get_wind_speed(vitesse);
-            double winddirection = get_wind_direction(direction);
 
             double boatspeed;
             double boatdirection = Math.Atan2(y2 - y1, x2 - x1) * 180 / Math.PI; // On ramène entre 0 et 360
             if (boatdirection < 0) boatdirection = boatdirection + 360;
             // calcul de la différence angulaire
-            double alpha = Math.Abs(boatdirection - winddirection);
+            double alpha = Math.Abs(boatdirection - direction);
             // On se ramène à une différence entre 0 et 180 :
             if (alpha > 180) alpha = 360 - alpha;
-            if (alpha <= 45)
-            {
-                /* (0.6 + 0.3α / 45) v_v */
-                boatspeed = (0.6 + 0.3 * alpha / 45) * windspeed;
-            }
-            else if (alpha <= 90)
-            {
-                /*v_b=(0.9-0.2(α-45)/45) v_v */
-                boatspeed = (0.9 - 0.2 * (alpha - 45) / 45) * windspeed;
-            }
-            else if (alpha < 150)
-            {
-                /* v_b=0.7(1-(α-90)/60) v_v */
-                boatspeed = 0.7 * (1 - (alpha - 90) / 60) * windspeed;
-            }
+            if (alpha <= 45) { boatspeed = (0.6 + 0.3 * alpha / 45) * vitesse;}
+            else if (alpha <= 90) {boatspeed = (0.9 - 0.2 * (alpha - 45) / 45) * vitesse;}
+            else if (alpha < 150){ boatspeed = 0.7 * (1 - (alpha - 90) / 60) * vitesse;}
             else
                 return 1000000;
             // estimation du temps de navigation entre p1 et p2
             return (distance / boatspeed);
         }
-       
-
-        public double get_wind_speed(double vitesse)
-        {
-            return vitesse;
-        }
-        public double get_wind_direction(double direction)
-        {
-            return direction;
-        }
-
-
 
         //A chercher
 
         public override bool IsEqual(GenericNode N2)
         {
-            if (this.absisse == N2.absisse && this.ordonnee==N2.ordonnee)
-            {
-                return true;
-            }
+            if (this.absisse == N2.absisse && this.ordonnee==N2.ordonnee) {  return true;}
             else return false;
         }
 
@@ -102,6 +70,9 @@ namespace ProjetTest
             // les successeurs d’un points(x, y) peuvent être les 8 voisins
             //(x - 1, y -1), (x - 1, y), (x - 1, y + 1), (x, y - 1), (x, y + 1),
             //(x + 1, y - 1), (x + 1, y) et(x + 1, y + 1).
+            //plus les 8 autres voisins 
+            //(x - 1, y -2), (x - 2, y-1), (x - 2, y + 1), (x-2, y + 2), (x+1, y + 2),
+            //(x + 2, y + 1), (x + 2, y - 1) et(x + 1, y - 2).
             double x = this.absisse;
             double y = this.ordonnee;
             
@@ -127,11 +98,6 @@ namespace ProjetTest
 
 
             return ListeNoeud;
-        }
-        public override double CalculeHCost2()
-        {
-            //calcul de l'heuristique
-            return 0;
         }
         public override List<GenericNode> GetListMeilleursSucc(GenericNode Nf)
         {
@@ -222,120 +188,29 @@ namespace ProjetTest
             }
             return MeilleursVoisins;
         }
-        /* public override double CalculeHCost2(GenericNode Nf)
-         {
-             //calcul de l'heuristique
-             //le but est de retourner le temps minimal qu'il est possible d'avoir pour rejoindre le noeud final
-
-
-
-
-             //on sélectionne les meilleurs voisins du noeud en fonction des coordonnées du point final
-             double HCostval = 0;
-
-             //calcul tous les trajets possibles tant qu'on arrive pas au noeud final Nf
-             GenericNode noeudtest = this;
-             List<double> temps_estime = new List<double>();
-             List<GenericNode> MeilleursVoisins = noeudtest.GetListMeilleursSucc(Nf);
-             int nbpremiervoisins = MeilleursVoisins.Count;
-             double testime = 0;
-
-             //avec endstate peut être
-
-             while (EndState(noeudtest)==false && MeilleursVoisins!=null && nbpremiervoisins>0)
-             {
-                 //on calcule le temps en fonction de chaque direction que prend le bateau et en fonction du sens du vent
-                 //correspond au testimation entre deux points avec 3 points possibles qui sont les meilleurs successeurs
-                 //par contre il faut connaitre la vitesse du vent -> est ce qu'on arrive à y accéder ou est ce qu'on prend la plus faible/grande
-                 //et aussi sa direction
-                 //on regarde si l'association des directions horizontale et verticale est plus rapide que celle on diago
-                 // on regarde quelle direction est la plus rapide et laquelle est la plus lente
-                 testime = time_estimation(noeudtest.absisse, noeudtest.ordonnee, MeilleursVoisins[nbpremiervoisins].absisse, MeilleursVoisins[nbpremiervoisins].ordonnee);
-                 noeudtest = MeilleursVoisins[nbpremiervoisins];
-
-
-
-                 MeilleursVoisins.Remove(MeilleursVoisins[nbpremiervoisins]);
-                 for (int i = 0; i < MeilleursVoisins.Count; i++)
-                 {
-                     //regarder si deux ou trois noeud on le même parent pour leur associer le bon temps estimé précédent
-                     //affecter un indice aux meilleurs noeuds pour pouvoir les retrouver et affecter les bons temps 
-
-
-                     //calcul du temps estimé entre deux noeuds et mise à jour du nouveau noeud à tester (problématique ici la boucle for, à changer)
-                     temps_estime[i] += time_estimation(noeudtest.absisse, noeudtest.ordonnee, MeilleursVoisins[i].absisse, MeilleursVoisins[i].ordonnee);
-                     noeudtest = MeilleursVoisins[i];
-                 }
-                 MeilleursVoisins = noeudtest.GetListMeilleursSucc(Nf);
-             }
-
-             //on renvoie une estimation du temps minimal pour arriver à la fin ? (pourquoi on prend pas le max, plus le max est petit mieux c'est et moins on prend de risques ??)
-             return HCostval;
-         }*/
+       
 
         public override double CalculeHCost(GenericNode Nf,double vitesse, double direction, GenericNode Nprecedent)
         {
             double x1 = this.absisse; double y1 = this.ordonnee;double x2 = Nf.absisse;double y2 = Nf.ordonnee;
             ////heuristique ou on calcule l'heuristique du temps à vol d'oiseau entre le point étudier et le final
             ////on calcul la distance à vol d'oiseau 
-            //double distance = Math.Sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
-
-            ////on calcule la vitesse max du bateau
-
-            ///* double boatdirection = Math.Atan2(y2 - y1, x2 - x1) * 180 / Math.PI; // On ramène entre 0 et 360
-            // if (boatdirection < 0) boatdirection = boatdirection + 360;
-            // double alpha = Math.Abs(boatdirection - direction);
-
-            // double boatspeed = (0.6 + 0.3 * alpha / 45) * vitesse;
-            // double boatspeed2 = (0.9 - 0.2 * (alpha - 45) / 45) * vitesse;
-            // double boatspeed3 = 0.7 * (1 - (alpha - 90) / 60) * vitesse;
-            // double vitbateau = Math.Max(boatspeed, boatspeed2);
-            // vitbateau = Math.Max(vitbateau, boatspeed3);*/
-
-            //double vitbateau = 0.9 * 50;
-            //// estimation du temps de navigation entre p1 et p2
-            //double HCostval =distance / vitbateau;
-
-            ////double HCostval = HCostval = this.time_estimation(this.absisse, this.ordonnee, Nf.absisse, Nf.ordonnee,vitesse,direction);
-            //return HCostval;
-            ////return 0;
-
+           
             double distance = Math.Sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
-            //double windspeed = get_wind_speed((x1 + x2) / 2.0, (y1 + y2) / 2.0);
-            //double winddirection = get_wind_direction((x1 + x2) / 2.0, (y1 + y2) / 2.0);
-           // if(Math.Sqrt((x1 - Nprecedent.absisse) * (x1 - Nprecedent.absisse) + (y1 - Nprecedent.ordonnee) * (y1 - Nprecedent.ordonnee)) >Math.Sqrt(20)) { return 1000000; }
-
-            double windspeed = get_wind_speed(vitesse);
-            double winddirection = get_wind_direction(direction);
-
             double boatspeed;
             double boatdirection = Math.Atan2(y2 - y1, x2 - x1) * 180 / Math.PI; // On ramène entre 0 et 360
             if (boatdirection < 0) boatdirection = boatdirection + 360;
             // calcul de la différence angulaire
-            double alpha = Math.Abs(boatdirection - winddirection);
+            double alpha = Math.Abs(boatdirection - direction);
             // On se ramène à une différence entre 0 et 180 :
             if (alpha > 180) alpha = 360 - alpha;
-            if (alpha <= 45)
-            {
-                /* (0.6 + 0.3α / 45) v_v */
-                boatspeed = (0.6 + 0.3 * alpha / 45) * windspeed;      //max 45 pour 50 - 20 pour 18
-            }
-            else if (alpha <= 90)
-            {
-                /*v_b=(0.9-0.2(α-45)/45) v_v */
-                boatspeed = (0.9 - 0.2 * (alpha - 45) / 45) * windspeed;    ///45
-            }
-            else if (alpha < 150)
-            {
-                /* v_b=0.7(1-(α-90)/60) v_v */
-                boatspeed = 0.7 * (1 - (alpha - 90) / 60) * windspeed;   //35
-            }
+            if (alpha <= 45) { boatspeed = (0.6 + 0.3 * alpha / 45) * vitesse; }
+            else if (alpha <= 90) { boatspeed = (0.9 - 0.2 * (alpha - 45) / 45) * vitesse; }
+            else if (alpha < 150){ boatspeed = 0.7 * (1 - (alpha - 90) / 60) * vitesse;  }
             else
                 return 1000000;
-            // estimation du temps de navigation entre p1 et p2
             
             return distance / boatspeed;
-           // return (distance / boatspeed) + distance + 100/boatspeed;
         }
 
         public override string ToString()

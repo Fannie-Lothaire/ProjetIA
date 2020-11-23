@@ -50,11 +50,6 @@ namespace ProjetTest
         }
 
         //coût total =coût debut au noeud + coût estimation heuristique pour noeud final
-        public void calculCoutTotal2()
-        {
-            HCost = CalculeHCost2();
-            TotalCost = GCost + HCost;
-        }
         public void calculCoutTotal(GenericNode Nf, double vitesse, double direction,GenericNode Nprecedent)
         {
             HCost = CalculeHCost(Nf,vitesse,direction,Nprecedent);
@@ -69,9 +64,6 @@ namespace ProjetTest
         public abstract bool EndState(GenericNode N2);
         public abstract List<GenericNode> GetListSucc();
         public abstract List<GenericNode> GetListMeilleursSucc(GenericNode Nf);
-        public abstract double CalculeHCost2();
         public abstract double CalculeHCost(GenericNode Nf, double vitesse, double direction,GenericNode Nprecedent); //test d'un calcul heuristique
-        // On peut aussi penser à surcharger ToString() pour afficher correctement un état
-        // c'est utile pour l'affichage du treenode
     }
 }

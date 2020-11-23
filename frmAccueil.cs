@@ -30,9 +30,9 @@ namespace ProjetIAv0
                     int vitesse = Convert.ToInt32(txtboxVitesse1.Text);
                     int direction = Convert.ToInt32(txtboxDirection1.Text);
 
+                    //Formulaire d'affichage pour un parcours de type 1
                     frmAffichage newAffiche = new frmAffichage(xo, yo, xf, yf, vitesse, direction);
                     newAffiche.Show();
-                    //Show(newAffiche);
                 }
             }
             else
@@ -48,9 +48,9 @@ namespace ProjetIAv0
                     int vitesse2 = Convert.ToInt32(txtboxVitesse2.Text);
                     int direction2 = Convert.ToInt32(txtboxDirection2.Text);
                     int y= Convert.ToInt32(txtboxY.Text);
+                    //Formulaire d'affichage pour un parcours de type 2
                     frmAffichage newAffiche = new frmAffichage(xo, yo, xf, yf, vitesse, direction,vitesse2,direction2,y);
                     newAffiche.Show();
-                    //Show(newAffiche);
                 }
                 }
 
@@ -59,7 +59,7 @@ namespace ProjetIAv0
         //Changement de l'affichage en fonction de l'influence présente ou non de l'ordonnée du noeud
         private void rdbtnOui_CheckedChanged(object sender, EventArgs e)
         {
-            if (rdbtnOui.Checked == true)
+            if (rdbtnOui.Checked == true) //le parcours est de type 2
             {
                 lblYinf.Visible = true;
                 txtboxY.Visible = true;
@@ -78,7 +78,7 @@ namespace ProjetIAv0
 
         private void rdbtnNon_CheckedChanged(object sender, EventArgs e)
         {
-            if (rdbtnNon.Checked == true)
+            if (rdbtnNon.Checked == true) //le parcours est de type 1
             {
                 lblDirection1.Visible = true;
                 lblVitesse1.Visible = true;
