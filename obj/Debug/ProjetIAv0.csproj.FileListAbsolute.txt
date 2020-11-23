@@ -51,3 +51,13 @@ C:\Users\Mariam\Documents\GitHub\ProjetIA\obj\Debug\ProjetIAv0.frmAccueil.resour
 C:\Users\Mariam\Documents\GitHub\ProjetIA\obj\Debug\ProjetIAv0.frmAffichage.resources
 C:\Users\flothaire\Desktop\ProjetIA\obj\Debug\ProjetIAv0.frmAccueil.resources
 C:\Users\flothaire\Desktop\ProjetIA\obj\Debug\ProjetIAv0.frmAffichage.resources
+C:\Users\Agathe Sauvage\Documents\gitIA\ProjetIA\bin\Debug\ProjetIAv0.exe.config
+C:\Users\Agathe Sauvage\Documents\gitIA\ProjetIA\obj\Debug\ProjetIAv0.exe
+C:\Users\Agathe Sauvage\Documents\gitIA\ProjetIA\obj\Debug\ProjetIAv0.pdb
+C:\Users\Agathe Sauvage\Documents\gitIA\ProjetIA\bin\Debug\ProjetIAv0.exe
+C:\Users\Agathe Sauvage\Documents\gitIA\ProjetIA\bin\Debug\ProjetIAv0.pdb
+C:\Users\Agathe Sauvage\Documents\gitIA\ProjetIA\obj\Debug\ProjetIAv0.csprojResolveAssemblyReference.cache
+C:\Users\Agathe Sauvage\Documents\gitIA\ProjetIA\obj\Debug\ProjetIAv0.frmAccueil.resources
+C:\Users\Agathe Sauvage\Documents\gitIA\ProjetIA\obj\Debug\ProjetIAv0.frmAffichage.resources
+C:\Users\Agathe Sauvage\Documents\gitIA\ProjetIA\obj\Debug\ProjetIAv0.Properties.Resources.resources
+C:\Users\Agathe Sauvage\Documents\gitIA\ProjetIA\obj\Debug\ProjetIAv0.csproj.GenerateResource.Cache

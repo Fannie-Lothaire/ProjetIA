@@ -92,8 +92,7 @@ namespace ProjetTest
         }
         public override bool EndState(GenericNode endnode)
         {
-            if(this.absisse==endnode.absisse && this.ordonnee == endnode.ordonnee) { return true; }
-            
+           if(this.absisse==endnode.absisse && this.ordonnee == endnode.ordonnee) { return true; }
             return false;
         }
 
