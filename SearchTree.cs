@@ -163,10 +163,6 @@ namespace ProjetTest
 
         private void MAJSuccesseurs(GenericNode N, GenericNode Nf, double vitesse, double direction)
         {
-            if (N.absisse == 150 && N.ordonnee == 150)
-            {
-                
-            }
             // On fait appel à GetListSucc, méthode abstraite qu'on doit réécrire pour chaque
             // problème. Elle doit retourner la liste complète des noeuds successeurs de N.
 

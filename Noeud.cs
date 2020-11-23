@@ -139,9 +139,19 @@ namespace ProjetTest
             Noeud voisin6 = new Noeud(x + 5, y - 5);
             Noeud voisin7 = new Noeud(x + 5, y);
             Noeud voisin8 = new Noeud(x + 5, y + 5);
-            List <GenericNode> ListeNoeud = new List<GenericNode>{voisin1,voisin2, voisin3,voisin4,voisin5,voisin6,voisin7,voisin8 };
-           
-        
+            Noeud voisin9 = new Noeud(x - 5, y - 10);
+            Noeud voisin10 = new Noeud(x - 10, y - 5);
+            Noeud voisin11 = new Noeud(x - 10, y + 5);
+            Noeud voisin12 = new Noeud(x - 5, y + 10);
+            Noeud voisin13 = new Noeud(x + 5, y + 10);
+            Noeud voisin14 = new Noeud(x + 10, y + 5);
+            Noeud voisin15 = new Noeud(x + 10, y - 5);
+            Noeud voisin16 = new Noeud(x + 5, y - 10);
+            //List <GenericNode> ListeNoeud = new List<GenericNode>{voisin1,voisin2, voisin3,voisin4,voisin5,voisin6,voisin7,voisin8};
+            List<GenericNode> ListeNoeud = new List<GenericNode> { voisin1, voisin2, voisin3, voisin4, voisin5, voisin6, voisin7, voisin8, voisin9, voisin10, voisin11, voisin12, voisin13, voisin14, voisin15, voisin16 };
+            //List<GenericNode> ListeNoeud = new List<GenericNode> { voisin9, voisin10, voisin11, voisin12, voisin13, voisin14, voisin15, voisin16 };
+
+
             return ListeNoeud;
         }
         public override double CalculeHCost2()
@@ -335,7 +345,7 @@ namespace ProjetTest
             else
                 return 1000000;
             // estimation du temps de navigation entre p1 et p2
-            return (distance / boatspeed) + distance + (100/boatspeed);
+            return (distance / boatspeed) + distance + 100/boatspeed;
         }
 
         public override string ToString()
