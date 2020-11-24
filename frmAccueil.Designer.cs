@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.gboxInfo = new System.Windows.Forms.GroupBox();
+            this.lblValY = new System.Windows.Forms.Label();
             this.txtboxY = new System.Windows.Forms.TextBox();
             this.lblYsup = new System.Windows.Forms.Label();
             this.lblYinf = new System.Windows.Forms.Label();
@@ -54,7 +55,6 @@
             this.lblAbsInit = new System.Windows.Forms.Label();
             this.lblCoordsFin = new System.Windows.Forms.Label();
             this.lblCoordsInit = new System.Windows.Forms.Label();
-            this.lblValY = new System.Windows.Forms.Label();
             this.gboxInfo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,6 +92,16 @@
             this.gboxInfo.TabIndex = 0;
             this.gboxInfo.TabStop = false;
             this.gboxInfo.Text = "Informations de voyage";
+            // 
+            // lblValY
+            // 
+            this.lblValY.AutoSize = true;
+            this.lblValY.Location = new System.Drawing.Point(25, 198);
+            this.lblValY.Name = "lblValY";
+            this.lblValY.Size = new System.Drawing.Size(158, 13);
+            this.lblValY.TabIndex = 26;
+            this.lblValY.Text = "Valeur du y où change le vent : ";
+            this.lblValY.Visible = false;
             // 
             // txtboxY
             // 
@@ -177,6 +187,7 @@
             this.rdbtnNon.Text = "Non";
             this.rdbtnNon.UseVisualStyleBackColor = true;
             this.rdbtnNon.CheckedChanged += new System.EventHandler(this.rdbtnNon_CheckedChanged);
+            this.rdbtnNon.TextChanged += new System.EventHandler(this.rdbtnNon_CheckedChanged);
             // 
             // rdbtnOui
             // 
@@ -189,6 +200,7 @@
             this.rdbtnOui.Text = "Oui";
             this.rdbtnOui.UseVisualStyleBackColor = true;
             this.rdbtnOui.CheckedChanged += new System.EventHandler(this.rdbtnOui_CheckedChanged);
+            this.rdbtnOui.TextChanged += new System.EventHandler(this.rdbtnOui_CheckedChanged);
             // 
             // btnValider
             // 
@@ -243,6 +255,7 @@
             this.txtboxOrdFin.Name = "txtboxOrdFin";
             this.txtboxOrdFin.Size = new System.Drawing.Size(100, 20);
             this.txtboxOrdFin.TabIndex = 9;
+            this.txtboxOrdFin.TextChanged += new System.EventHandler(this.txtboxAbsInit_TextChanged);
             // 
             // txtboxAbsFin
             // 
@@ -250,6 +263,7 @@
             this.txtboxAbsFin.Name = "txtboxAbsFin";
             this.txtboxAbsFin.Size = new System.Drawing.Size(100, 20);
             this.txtboxAbsFin.TabIndex = 8;
+            this.txtboxAbsFin.TextChanged += new System.EventHandler(this.txtboxAbsInit_TextChanged);
             // 
             // txtboxOrdInit
             // 
@@ -257,6 +271,7 @@
             this.txtboxOrdInit.Name = "txtboxOrdInit";
             this.txtboxOrdInit.Size = new System.Drawing.Size(100, 20);
             this.txtboxOrdInit.TabIndex = 7;
+            this.txtboxOrdInit.TextChanged += new System.EventHandler(this.txtboxAbsInit_TextChanged);
             // 
             // txtboxAbsInit
             // 
@@ -264,6 +279,7 @@
             this.txtboxAbsInit.Name = "txtboxAbsInit";
             this.txtboxAbsInit.Size = new System.Drawing.Size(100, 20);
             this.txtboxAbsInit.TabIndex = 6;
+            this.txtboxAbsInit.TextChanged += new System.EventHandler(this.txtboxAbsInit_TextChanged);
             // 
             // lblOrdFin
             // 
@@ -318,16 +334,6 @@
             this.lblCoordsInit.Size = new System.Drawing.Size(118, 13);
             this.lblCoordsInit.TabIndex = 0;
             this.lblCoordsInit.Text = "Coordonnées de départ";
-            // 
-            // lblValY
-            // 
-            this.lblValY.AutoSize = true;
-            this.lblValY.Location = new System.Drawing.Point(25, 198);
-            this.lblValY.Name = "lblValY";
-            this.lblValY.Size = new System.Drawing.Size(158, 13);
-            this.lblValY.TabIndex = 26;
-            this.lblValY.Text = "Valeur du y où change le vent : ";
-            this.lblValY.Visible = false;
             // 
             // frmAccueil
             // 

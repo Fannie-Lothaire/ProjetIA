@@ -12,9 +12,11 @@ namespace ProjetIAv0
 {
     public partial class frmAccueil : Form
     {
+       
         public frmAccueil()
         {
             InitializeComponent();
+            btnValider.Visible = false;
         }
 
         private void btnValider_Click(object sender, EventArgs e)
@@ -95,6 +97,14 @@ namespace ProjetIAv0
                 txtboxDirection2.Visible = false;
                 txtboxVitesse2.Visible = false;
             }
+        }
+
+        private void txtboxAbsInit_TextChanged(object sender, EventArgs e)
+        {
+            
+
+                btnValider.Visible = true;
+            
         }
     }
 }

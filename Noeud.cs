@@ -61,6 +61,11 @@ namespace ProjetTest
         public override bool EndState(GenericNode endnode)
         {
            if(this.absisse==endnode.absisse && this.ordonnee == endnode.ordonnee) { return true; }
+            Rectangle rect2 = new Rectangle(new Point((int)endnode.absisse, (int)endnode.ordonnee), new Size(new Point(10, 10)));
+            if (rect2.Contains(new Point((int)this.absisse, (int)this.ordonnee)))
+            {
+                return true;
+            }
             return false;
         }
 
