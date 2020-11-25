@@ -32,9 +32,20 @@ namespace ProjetIAv0
                     int vitesse = Convert.ToInt32(txtboxVitesse1.Text);
                     int direction = Convert.ToInt32(txtboxDirection1.Text);
 
-                    //Formulaire d'affichage pour un parcours de type 1
-                    frmAffichage newAffiche = new frmAffichage(xo, yo, xf, yf, vitesse, direction);
-                    newAffiche.Show();
+                    if (xo > 300 || xo < -300 || yo > 300 || yo < -300 || xf > 300 || xf < -300 || yf > 300 || yf < -300)
+                    {
+                        MessageBox.Show("Les coordonnées doivent être comprises entre -300 et 300 ");
+                    }
+                    else
+                    {
+                        //Formulaire d'affichage pour un parcours de type 1
+                        frmAffichage newAffiche = new frmAffichage(xo, yo, xf, yf, vitesse, direction);
+                        newAffiche.Show();
+                    }
+                }
+                if (txtboxVitesse1.Text == "" || txtboxDirection1.Text == "")
+                {
+                    MessageBox.Show("Tous les champs doivent être saisis");
                 }
             }
             else
@@ -50,12 +61,23 @@ namespace ProjetIAv0
                     int vitesse2 = Convert.ToInt32(txtboxVitesse2.Text);
                     int direction2 = Convert.ToInt32(txtboxDirection2.Text);
                     int y= Convert.ToInt32(txtboxY.Text);
-                    //Formulaire d'affichage pour un parcours de type 2
-                    frmAffichage newAffiche = new frmAffichage(xo, yo, xf, yf, vitesse, direction,vitesse2,direction2,y);
-                    newAffiche.Show();
-                }
-                }
 
+                    if (xo > 300 || xo < -300 || yo > 300 || yo < -300 || xf > 300 || xf < -300 || yf > 300 || yf < -300)
+                    {
+                        MessageBox.Show("Les coordonnées doivent être comprises entre -300 et 300 ");
+                    }
+                    else
+                    {
+                        //Formulaire d'affichage pour un parcours de type 2
+                        frmAffichage newAffiche = new frmAffichage(xo, yo, xf, yf, vitesse, direction, vitesse2, direction2, y);
+                        newAffiche.Show();
+                    }
+                }
+                if (txtboxVitesse1.Text == "" || txtboxDirection1.Text == "" || txtboxVitesse2.Text == "" || txtboxDirection2.Text == "" || txtboxY.Text == "")
+                {
+                    MessageBox.Show("Tous les champs doivent être saisis");
+                }
+            }
             }
 
         //Changement de l'affichage en fonction de l'influence présente ou non de l'ordonnée du noeud
@@ -101,10 +123,7 @@ namespace ProjetIAv0
 
         private void txtboxAbsInit_TextChanged(object sender, EventArgs e)
         {
-            
-
-                btnValider.Visible = true;
-            
+            btnValider.Visible = true;
         }
     }
 }
