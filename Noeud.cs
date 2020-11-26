@@ -197,7 +197,7 @@ namespace ProjetTest
             ////on calcul la distance à vol d'oiseau 
 
               double distance = Math.Sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
-              double boatspeed=45;
+              double boatspeed=0.9*vitesse;
             /* double boatdirection = Math.Atan2(y2 - y1, x2 - x1) * 180 / Math.PI; // On ramène entre 0 et 360
              if (boatdirection < 0) boatdirection = boatdirection + 360;
              // calcul de la différence angulaire
