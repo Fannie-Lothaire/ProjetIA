@@ -11,15 +11,11 @@ namespace ProjetTest
     {
         public Noeud(double abs, double ord)
         {
-            //test
             ParentNode = null;
             Enfants = new List<GenericNode>();
             absisse = abs;
             ordonnee = ord;
         }
-
-        //surchargeant les fonctions GetArcCost, GetListSucc, EndState, IsEqual et éventuellement celle qui calcule l’heuristique
-        //Pour GetArcCost, il faut simplement appeler time_estimation avec les bons paramètres.
 
         //calcul du temps estimé entre deux points
         // Cette fonction prend en paramètres 2 points
@@ -27,6 +23,7 @@ namespace ProjetTest
         // il n’est donc pas possible d’appeler cette fonction pour des distances supérieures à 10 Km
         public double time_estimation(double x1, double y1, double x2, double y2, double vitesse, double direction)
         {
+            //modification de la fonction initiale en ajoutant les valeurs de vitesse et direction du vent entrées^par l'utilisateur
             double distance = Math.Sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
             if (distance > 10) return 1000000;
 
@@ -50,21 +47,23 @@ namespace ProjetTest
 
         public override bool IsEqual(GenericNode N2)
         {
+            //recherche si deux noeuds sont égaux
             if (this.absisse == N2.absisse && this.ordonnee==N2.ordonnee) {  return true;}
             else return false;
         }
 
         public override double GetArcCost(GenericNode N2, double vitesse, double direction)
         {
+            //renvoie la valeur du temps estimé
             return time_estimation(this.absisse,this.ordonnee,N2.absisse,N2.ordonnee,vitesse,direction);
         }
         public override bool EndState(GenericNode endnode)
         {
+            //Cherche si le noeud possède les mêmes coordonnées que le noeud final
            if(this.absisse==endnode.absisse && this.ordonnee == endnode.ordonnee) { return true; }
             return false;
         }
-
-        public override List<GenericNode> GetListSucc()
+        public override List<GenericNode> GetListMeilleursSucc(GenericNode Nf)
         {
             //quadrillage carré
             // les successeurs d’un points(x, y) peuvent être les 8 voisins
@@ -75,46 +74,38 @@ namespace ProjetTest
             //(x + 2, y + 1), (x + 2, y - 1) et(x + 1, y - 2).
             double x = this.absisse;
             double y = this.ordonnee;
-            
-                        Noeud voisin1 = new Noeud(x - 1, y - 1);
-                        Noeud voisin2 = new Noeud(x - 1, y);
-                        Noeud voisin3 = new Noeud(x - 1, y + 1);
-                        Noeud voisin4 = new Noeud(x, y - 1);
-                        Noeud voisin5 = new Noeud(x, y + 1);
-                        Noeud voisin6 = new Noeud(x + 1, y - 1);
-                        Noeud voisin7 = new Noeud(x + 1, y);
-                        Noeud voisin8 = new Noeud(x + 1, y + 1);
-                        Noeud voisin9 = new Noeud(x - 1, y - 2);
-                        Noeud voisin10 = new Noeud(x - 2, y - 1);
-                        Noeud voisin11 = new Noeud(x - 2, y + 1);
-                        Noeud voisin12 = new Noeud(x - 2, y + 2);
-                        Noeud voisin13 = new Noeud(x + 1, y + 2);
-                        Noeud voisin14 = new Noeud(x + 2, y + 1);
-                        Noeud voisin15 = new Noeud(x + 2, y - 1);
-                        Noeud voisin16 = new Noeud(x + 1, y - 2);
-            
-            List<GenericNode> ListeNoeud = new List<GenericNode> { voisin1, voisin2, voisin3, voisin4, voisin5, voisin6, voisin7, voisin8, voisin9, voisin10, voisin11, voisin12, voisin13, voisin14, voisin15, voisin16 };
-     
+            Noeud voisin1 = new Noeud(x - 1, y - 1);
+            Noeud voisin2 = new Noeud(x - 1, y);
+            Noeud voisin3 = new Noeud(x - 1, y + 1);
+            Noeud voisin4 = new Noeud(x, y - 1);
+            Noeud voisin5 = new Noeud(x, y + 1);
+            Noeud voisin6 = new Noeud(x + 1, y - 1);
+            Noeud voisin7 = new Noeud(x + 1, y);
+            Noeud voisin8 = new Noeud(x + 1, y + 1);
+            Noeud voisin9 = new Noeud(x - 1, y - 2);
+            Noeud voisin10 = new Noeud(x - 2, y - 1);
+            Noeud voisin11 = new Noeud(x - 2, y + 1);
+            Noeud voisin12 = new Noeud(x - 2, y + 2);
+            Noeud voisin13 = new Noeud(x + 1, y + 2);
+            Noeud voisin14 = new Noeud(x + 2, y + 1);
+            Noeud voisin15 = new Noeud(x + 2, y - 1);
+            Noeud voisin16 = new Noeud(x + 1, y - 2);
 
+            //Néanmoins on utilisera cette fonction pour éviter de regarder tous les points possibles
+            //au lieu d'évaluer 16 successeurs on en évaluera que 5
 
-            return ListeNoeud;
-        }
-        public override List<GenericNode> GetListMeilleursSucc(GenericNode Nf)
-        {
-            //on utilisera cette fonction pour éviter de regarder tous les points possibles
-            List<GenericNode> ListeNoeud = GetListSucc();
             List<GenericNode> MeilleursVoisins = new List<GenericNode>();
             if (Nf.absisse == this.absisse)
             {
                 if (Nf.ordonnee > this.ordonnee)
                 {
                     //fleche vers le haut
-                    MeilleursVoisins.Add(ListeNoeud[4]);
+                    MeilleursVoisins.Add(voisin5);
                 }
                 else
                 {
                     //fleche vers le bas
-                    MeilleursVoisins.Add(ListeNoeud[3]);
+                    MeilleursVoisins.Add(voisin4);
                 }
 
             }
@@ -125,12 +116,12 @@ namespace ProjetTest
                     if (Nf.absisse > this.absisse)
                     {
                         //fleche vers la droite
-                        MeilleursVoisins.Add(ListeNoeud[6]);
+                        MeilleursVoisins.Add(voisin7);
                     }
                     else
                     {
                         //fleche vers la gauche
-                        MeilleursVoisins.Add(ListeNoeud[1]);
+                        MeilleursVoisins.Add(voisin2);
                     }
 
                 }
@@ -139,46 +130,46 @@ namespace ProjetTest
                     if (Nf.absisse > this.absisse && Nf.ordonnee > this.ordonnee)
                     {
                         //fleche droite haute et horizontale et oblique
-                        MeilleursVoisins.Add(ListeNoeud[6]);
-                        MeilleursVoisins.Add(ListeNoeud[7]);
-                        MeilleursVoisins.Add(ListeNoeud[4]);
-                        //nouveaux voisins
-                        MeilleursVoisins.Add(ListeNoeud[14]);
-                        MeilleursVoisins.Add(ListeNoeud[13]);
+                        MeilleursVoisins.Add(voisin7);
+                        MeilleursVoisins.Add(voisin8);
+                        MeilleursVoisins.Add(voisin5);
+                        //nouveaux voisins vers la droite haute
+                        MeilleursVoisins.Add(voisin15);
+                        MeilleursVoisins.Add(voisin14);
                     }
                     else
                     {
                         if (Nf.absisse > this.absisse && Nf.ordonnee < this.ordonnee)
                         {
                             //fleche droite basse et horizontale et oblique
-                            MeilleursVoisins.Add(ListeNoeud[6]);
-                            MeilleursVoisins.Add(ListeNoeud[5]);
-                            MeilleursVoisins.Add(ListeNoeud[3]);
-                            //nouveaux voisins
-                            MeilleursVoisins.Add(ListeNoeud[14]);
-                            MeilleursVoisins.Add(ListeNoeud[15]);
+                            MeilleursVoisins.Add(voisin7);
+                            MeilleursVoisins.Add(voisin6);
+                            MeilleursVoisins.Add(voisin4);
+                            //nouveaux voisins vers la droite haute
+                            MeilleursVoisins.Add(voisin15);
+                            MeilleursVoisins.Add(voisin16);
                         }
                         else
                         {
                             if (Nf.absisse < this.absisse && Nf.ordonnee > this.ordonnee)
                             {
                                 //fleche gauche haute et horizontale et oblique
-                                MeilleursVoisins.Add(ListeNoeud[1]);
-                                MeilleursVoisins.Add(ListeNoeud[2]);
-                                MeilleursVoisins.Add(ListeNoeud[4]);
-                                //nouveaux voisins
-                                MeilleursVoisins.Add(ListeNoeud[10]);
-                                MeilleursVoisins.Add(ListeNoeud[11]);
+                                MeilleursVoisins.Add(voisin2);
+                                MeilleursVoisins.Add(voisin3);
+                                MeilleursVoisins.Add(voisin5);
+                                //nouveaux voisins vers la gauche haute
+                                MeilleursVoisins.Add(voisin11);
+                                MeilleursVoisins.Add(voisin12);
                             }
                             else
                             {
                                 //fleche gauche basse et horizontale et oblique
-                                MeilleursVoisins.Add(ListeNoeud[1]);
-                                MeilleursVoisins.Add(ListeNoeud[0]);
-                                MeilleursVoisins.Add(ListeNoeud[3]);
-                                //nouveaux voisins
-                                MeilleursVoisins.Add(ListeNoeud[9]);
-                                MeilleursVoisins.Add(ListeNoeud[10]);
+                                MeilleursVoisins.Add(voisin2);
+                                MeilleursVoisins.Add(voisin1);
+                                MeilleursVoisins.Add(voisin4);
+                                //nouveaux voisins vers la gauche basse
+                                MeilleursVoisins.Add(voisin10);
+                                MeilleursVoisins.Add(voisin11);
                             }
                         }
                     }
@@ -188,33 +179,21 @@ namespace ProjetTest
             }
             return MeilleursVoisins;
         }
-       
 
         public override double CalculeHCost(GenericNode Nf,double vitesse, double direction, GenericNode Nprecedent)
         {
-            double x1 = this.absisse; double y1 = this.ordonnee;double x2 = Nf.absisse;double y2 = Nf.ordonnee;
             ////heuristique ou on calcule l'heuristique du temps à vol d'oiseau entre le point étudier et le final
-            ////on calcul la distance à vol d'oiseau 
-
-              double distance = Math.Sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
-              double boatspeed=0.9*vitesse;
-            /* double boatdirection = Math.Atan2(y2 - y1, x2 - x1) * 180 / Math.PI; // On ramène entre 0 et 360
-             if (boatdirection < 0) boatdirection = boatdirection + 360;
-             // calcul de la différence angulaire
-             double alpha = Math.Abs(boatdirection - direction);
-             // On se ramène à une différence entre 0 et 180 :
-             if (alpha > 180) alpha = 360 - alpha;
-             if (alpha <= 45) { boatspeed = (0.6 + 0.3 * alpha / 45) * vitesse; }
-             else if (alpha <= 90) { boatspeed = (0.9 - 0.2 * (alpha - 45) / 45) * vitesse; }
-             else if (alpha < 150){ boatspeed = 0.7 * (1 - (alpha - 90) / 60) * vitesse;  }
-             else
-                 return 1000000;*/
+            ////on calcule la distance à vol d'oiseau
+            double x1 = this.absisse; double y1 = this.ordonnee;double x2 = Nf.absisse;double y2 = Nf.ordonnee;
+            double distance = Math.Sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+            //on calcule la vitesse max du bateau en fonction de la vitesse du vent
+            double boatspeed=0.9*vitesse;
             return distance / boatspeed;
         }
 
         public override string ToString()
         {
-
+            //affichage des coordonnées pour l'arbre des noeuds
             string coord = ("(" + this.absisse + "," + this.ordonnee + ")");
             return coord;
         }

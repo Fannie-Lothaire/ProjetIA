@@ -62,8 +62,7 @@ namespace ProjetTest
         public abstract bool IsEqual(GenericNode N2);
         public abstract double GetArcCost(GenericNode N2, double vitesse, double direction);
         public abstract bool EndState(GenericNode N2);
-        public abstract List<GenericNode> GetListSucc();
         public abstract List<GenericNode> GetListMeilleursSucc(GenericNode Nf);
-        public abstract double CalculeHCost(GenericNode Nf, double vitesse, double direction,GenericNode Nprecedent); //test d'un calcul heuristique
+        public abstract double CalculeHCost(GenericNode Nf, double vitesse, double direction,GenericNode Nprecedent);
     }
 }

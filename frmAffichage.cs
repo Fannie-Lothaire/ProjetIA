@@ -25,6 +25,7 @@ namespace ProjetIAv0
 
         public frmAffichage(int x0, int y0, int xf, int yf, double speed, double direction)
         {
+            //Initialisation des paramètres du formulaire d'affichage pour un parcours de type 1 rentrés par l'utilisateur
             InitializeComponent();
             _x0 = x0;
             _y0 = y0;
@@ -36,6 +37,7 @@ namespace ProjetIAv0
 
         public frmAffichage(int x0, int y0, int xf, int yf, double speed, double direction, double speed2, double direction2,double y)
         {
+            //Initialisation des paramètres du formulaire d'affichage pour un parcours de type 2 rentrés par l'utilisateur
             InitializeComponent();
             _x0 = x0;
             _y0 = y0;
@@ -51,6 +53,7 @@ namespace ProjetIAv0
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         { 
+            //Affichage des points initial et final sur la picturebox
             Pen pen = new Pen(Color.Red);
             Pen penvert = new Pen(Color.Green);
             Rectangle rect = new Rectangle(new Point(_x0, -(_y0 - pictureBox1.Height)), new Size(new Point(3, 3)));
@@ -63,15 +66,18 @@ namespace ProjetIAv0
 
         private void start(Graphics g)
         {
-
+            //Lancement du programme
+            //Affectation des points rentrés par l'utilisateur
             Noeud startnode = new Noeud(_x0, _y0);
-            lblInit.Text = "Point initial : (" + _x0 + "," + _y0 + ")";
+            lblInit.Text = "Point initial : (" + _x0 + "," + _y0 + ")"; 
             lblInit.Visible = true;
             Noeud endnode = new Noeud(_xf, _yf);
             lblFin.Text = "Point final : (" + _xf + "," + _yf + ")";
             lblFin.Visible = true;
+            //Création d'un arbre de noeuds
             SearchTree st = new SearchTree();
             List<GenericNode> chemin = new List<GenericNode>();
+            //Calcul de la solution A* en fonction du parcours choisi (s'il y a un ou plusieur types de vent)
             if (_yModifVent > 0)
             {
                 chemin = st.RechercheSolutionAEtoile2(startnode, endnode, _speed, _direction,_speed2,_direction2,_yModifVent);
@@ -82,11 +88,12 @@ namespace ProjetIAv0
             }
             
             TreeView t = new TreeView();
+            //Affichage de l'arbre à noeuds
             pboxArbre.Controls.Add(t);
             st.GetSearchTree(t);
             Noeud n0 = startnode;
-
             double temps = 0;
+            //Calcul du temps de trajet (idéal) et affichage des segments correspondants au trajet
             foreach (Noeud n in chemin)
             {
                 temps = n.GetGCost();
@@ -95,7 +102,6 @@ namespace ProjetIAv0
             }
             txtboxNoeudf.Text = Convert.ToString(chemin.Count);
             txtboxNoeudfo.Text = Convert.ToString(t.GetNodeCount(true));
-
             int heures = (int)(temps * 60) / 60;
             double minutes = temps * 60 - heures * 60;
             txtboxTemps.Text = Convert.ToString(heures)+ "h "+ Convert.ToString(Math.Round(minutes))+"min";

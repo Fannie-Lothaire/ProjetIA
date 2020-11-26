@@ -15,14 +15,17 @@ namespace ProjetIAv0
        
         public frmAccueil()
         {
+            //Bouton valide non visible pour éviter que l'utilisateur ne clique sans avoir rempli les champs
             InitializeComponent();
             btnValider.Visible = false;
         }
 
         private void btnValider_Click(object sender, EventArgs e)
         {
+            //Vérification si on se trouve dans un parcours de type 1 : sans changement de vent
             if (rdbtnNon.Checked)
             {
+                //Vérification que tous les champs des textboxs sont remplis
                 if (txtboxAbsFin.Text != "" && txtboxAbsInit.Text != "" && txtboxDirection1.Text != "" && txtboxOrdInit.Text != "" && txtboxOrdFin.Text != "" && txtboxVitesse1.Text != "")
                 {
                     int xo = Convert.ToInt32(txtboxAbsInit.Text);
@@ -31,7 +34,7 @@ namespace ProjetIAv0
                     int yf = Convert.ToInt32(txtboxOrdFin.Text);
                     int vitesse = Convert.ToInt32(txtboxVitesse1.Text);
                     int direction = Convert.ToInt32(txtboxDirection1.Text);
-
+                    //Vérification que les coordonnées appartiennent bien au domaine défini
                     if (xo > 300 || xo < -300 || yo > 300 || yo < -300 || xf > 300 || xf < -300 || yf > 300 || yf < -300)
                     {
                         MessageBox.Show("Les coordonnées doivent être comprises entre -300 et 300 ");
@@ -50,6 +53,8 @@ namespace ProjetIAv0
             }
             else
             {
+                //Cas d'un parcours de type 2 : le vent change à partir d'une certaine ordonnée
+                //mêmes vérifications que pour le parcours de type 1
                 if (txtboxAbsFin.Text != "" && txtboxAbsInit.Text != "" && txtboxDirection1.Text != "" && txtboxOrdInit.Text != "" && txtboxOrdFin.Text != "" && txtboxVitesse1.Text != "" && txtboxVitesse2.Text != "" && txtboxDirection1.Text != "" && txtboxY.Text!="")
                 {
                     int xo = Convert.ToInt32(txtboxAbsInit.Text);
@@ -80,11 +85,12 @@ namespace ProjetIAv0
             }
             }
 
-        //Changement de l'affichage en fonction de l'influence présente ou non de l'ordonnée du noeud
+        //Changement de l'affichage en fonction du type de parcours
         private void rdbtnOui_CheckedChanged(object sender, EventArgs e)
         {
             if (rdbtnOui.Checked == true) //le parcours est de type 2
             {
+                //On affiche le choix de l'ordonnées et des deux types de vent
                 lblYinf.Visible = true;
                 txtboxY.Visible = true;
                 lblDirection1.Visible = true;
@@ -104,11 +110,12 @@ namespace ProjetIAv0
         {
             if (rdbtnNon.Checked == true) //le parcours est de type 1
             {
+                //On affiche le choix du vent
                 lblDirection1.Visible = true;
                 lblVitesse1.Visible = true;
                 txtboxDirection1.Visible = true;
                 txtboxVitesse1.Visible = true;
-
+                //On cache le choix de l'ordonnée et du deuxième vent
                 lblValY.Visible = false;
                 lblYinf.Visible = false;
                 txtboxY.Visible = false;
@@ -122,7 +129,7 @@ namespace ProjetIAv0
         }
 
         private void txtboxAbsInit_TextChanged(object sender, EventArgs e)
-        {
+        {//Affichage du bouton lorsque des caractères sont entrés
             btnValider.Visible = true;
         }
     }
