@@ -61,11 +61,6 @@ namespace ProjetTest
         public override bool EndState(GenericNode endnode)
         {
            if(this.absisse==endnode.absisse && this.ordonnee == endnode.ordonnee) { return true; }
-            Rectangle rect2 = new Rectangle(new Point((int)endnode.absisse, (int)endnode.ordonnee), new Size(new Point(10, 10)));
-            if (rect2.Contains(new Point((int)this.absisse, (int)this.ordonnee)))
-            {
-                return true;
-            }
             return false;
         }
 
@@ -200,21 +195,20 @@ namespace ProjetTest
             double x1 = this.absisse; double y1 = this.ordonnee;double x2 = Nf.absisse;double y2 = Nf.ordonnee;
             ////heuristique ou on calcule l'heuristique du temps à vol d'oiseau entre le point étudier et le final
             ////on calcul la distance à vol d'oiseau 
-           
-            double distance = Math.Sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
-            double boatspeed;
-            double boatdirection = Math.Atan2(y2 - y1, x2 - x1) * 180 / Math.PI; // On ramène entre 0 et 360
-            if (boatdirection < 0) boatdirection = boatdirection + 360;
-            // calcul de la différence angulaire
-            double alpha = Math.Abs(boatdirection - direction);
-            // On se ramène à une différence entre 0 et 180 :
-            if (alpha > 180) alpha = 360 - alpha;
-            if (alpha <= 45) { boatspeed = (0.6 + 0.3 * alpha / 45) * vitesse; }
-            else if (alpha <= 90) { boatspeed = (0.9 - 0.2 * (alpha - 45) / 45) * vitesse; }
-            else if (alpha < 150){ boatspeed = 0.7 * (1 - (alpha - 90) / 60) * vitesse;  }
-            else
-                return 1000000;
-            
+
+              double distance = Math.Sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+              double boatspeed=45;
+            /* double boatdirection = Math.Atan2(y2 - y1, x2 - x1) * 180 / Math.PI; // On ramène entre 0 et 360
+             if (boatdirection < 0) boatdirection = boatdirection + 360;
+             // calcul de la différence angulaire
+             double alpha = Math.Abs(boatdirection - direction);
+             // On se ramène à une différence entre 0 et 180 :
+             if (alpha > 180) alpha = 360 - alpha;
+             if (alpha <= 45) { boatspeed = (0.6 + 0.3 * alpha / 45) * vitesse; }
+             else if (alpha <= 90) { boatspeed = (0.9 - 0.2 * (alpha - 45) / 45) * vitesse; }
+             else if (alpha < 150){ boatspeed = 0.7 * (1 - (alpha - 90) / 60) * vitesse;  }
+             else
+                 return 1000000;*/
             return distance / boatspeed;
         }
 

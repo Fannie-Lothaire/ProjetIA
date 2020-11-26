@@ -13,7 +13,7 @@ namespace ProjetIAv0
         static void Main()
         {
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            Application.SetCompatibleTextRenderingDefault(false); 
             Application.Run(new frmAccueil());
         }
     }
