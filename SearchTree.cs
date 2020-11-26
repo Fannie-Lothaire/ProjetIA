@@ -161,10 +161,6 @@ namespace ProjetTest
 
         private void MAJSuccesseurs(GenericNode N, GenericNode Nf, double vitesse, double direction, GenericNode Nprecedent)
         {
-            // On fait appel à GetListSucc, méthode abstraite qu'on doit réécrire pour chaque
-            // problème. Elle doit retourner la liste complète des noeuds successeurs de N.
-
-            //List<GenericNode> listsucc = N.GetListSucc();
             List<GenericNode> listsucc = N.GetListMeilleursSucc(Nf);
             foreach (GenericNode N2 in listsucc)
             {
